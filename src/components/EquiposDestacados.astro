@@ -1,0 +1,64 @@
+---
+import Card from './Card.astro';
+
+// Iconos
+const icons = {
+  chevronRight: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>`,
+};
+
+// Datos para la sección
+const featuredProducts = [
+  {
+    title: "Tractores Serie MF 8S",
+    description: "Potencia y eficiencia para las tareas más exigentes",
+    image: "/placeholder.svg?height=300&width=400",
+  },
+  {
+    title: "Cosechadoras IDEAL",
+    description: "Tecnología de vanguardia para una cosecha perfecta",
+    image: "/placeholder.svg?height=300&width=400",
+  },
+  {
+    title: "Implementos Agrícolas",
+    description: "Soluciones completas para cada etapa del cultivo",
+    image: "/placeholder.svg?height=300&width=400",
+  },
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Equipos Destacados</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Descubra nuestra selección de tractores y maquinaria agrícola Massey Ferguson, diseñados para maximizar su
+        productividad en el campo
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuredProducts.map((product) => (
+        <Card>
+          <div class="relative h-64">
+            <img src={product.image || "/placeholder.svg"} alt={product.title} class="object-cover w-full h-full" />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">{product.title}</h3>
+            <p class="text-gray-600 mb-4">{product.description}</p>
+            <a href="#" class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm">
+              Ver Detalles
+            </a>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/productos" class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 text-base">
+        Ver Todos los Productos
+        <span set:html={icons.chevronRight} />
+      </a>
+    </div>
+  </div>
+</section>
+

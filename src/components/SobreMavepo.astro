@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import Banner from '../assets/baner2.jpg';
+export interface Props {
+  showButton?: boolean;
+  buttonText?: string;
+  buttonLink?: string;
+}
+
+const { 
+  showButton = true, 
+  buttonText = "Conocer Más", 
+  buttonLink = "/nosotros" 
+} = Astro.props;
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-6">Sobre Mavepo</h2>
+        <p class="text-gray-600 mb-4">
+          Con más de 20 años de experiencia en el sector agrícola, Mavepo se ha consolidado como distribuidor
+          líder de Massey Ferguson en la región, ofreciendo soluciones integrales para el agricultor moderno.
+        </p>
+        <p class="text-gray-600 mb-6">
+          Nuestro compromiso es brindar maquinaria de alta calidad, respaldada por un servicio técnico
+          especializado y un amplio stock de repuestos originales, garantizando la máxima productividad de su
+          inversión.
+        </p>
+        {showButton && (
+          <a href={buttonLink} class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-red-500 text-white hover:bg-red-600 px-4 py-3 text-sm">
+            {buttonText}
+          </a>
+        )}
+      </div>
+      <div class="relative h-[400px] rounded-lg overflow-hidden">
+        <Image
+          src={Banner}
+          alt="Instalaciones de Mavepo"
+          class="object-cover w-full h-full"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+

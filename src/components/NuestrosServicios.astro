@@ -1,0 +1,60 @@
+---
+import Card from './Card.astro';
+
+// Iconos
+const icons = {
+  tractor: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l4.2-4.5"></path><path d="M7 15a2 2 0 1 0 4 0 2 2 0 1 0-4 0"></path><path d="M15.5 15a2 2 0 1 0 4 0 2 2 0 1 0-4 0"></path><path d="M5 9h2.5"></path><path d="M5 6h11l-1 7"></path><path d="M14 13h2"></path><path d="M3 4h18v8c0 1.7 0 5-4 5"></path></svg>`,
+  tools: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>`,
+  wrench: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+  shoppingBag: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`,
+};
+
+// Datos para la sección
+const services = [
+  {
+    title: "Venta de Equipos",
+    description: "Amplia gama de tractores y maquinaria agrícola Massey Ferguson",
+    icon: icons.tractor,
+  },
+  {
+    title: "Servicio Técnico",
+    description: "Mantenimiento preventivo y correctivo por técnicos certificados",
+    icon: icons.tools,
+  },
+  {
+    title: "Repuestos Originales",
+    description: "Stock permanente de repuestos y accesorios genuinos",
+    icon: icons.wrench,
+  },
+  {
+    title: "Financiamiento",
+    description: "Opciones de financiamiento adaptadas a sus necesidades",
+    icon: icons.shoppingBag,
+  },
+];
+---
+
+<section class="py-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Nuestros Servicios</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        En Mavepo ofrecemos soluciones integrales para el mantenimiento y optimización de su maquinaria agrícola
+        Massey Ferguson
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {services.map((service) => (
+        <Card class="text-center p-6 hover:shadow-lg transition-shadow">
+          <div class="p-0">
+            <div class="flex justify-center mb-4 text-red-500" set:html={service.icon} />
+            <h3 class="text-xl font-bold mb-2">{service.title}</h3>
+            <p class="text-gray-600">{service.description}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+

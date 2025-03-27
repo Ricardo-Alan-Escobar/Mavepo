@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import Banner from '../assets/img_principal.jpg';
+const icons = {
+  chevronRight: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>`,
+};
+---
+
+<section class="relative w-full h-[600px] flex items-center">
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={Banner}
+      alt="Tractor en campo"
+      class="object-cover w-full h-full brightness-50"
+    />
+  </div>
+  <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl text-white">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+        Distribuidores Oficiales de Massey Ferguson
+      </h1>
+      <p class="text-xl mb-8">
+        Maquinaria agrícola de calidad, servicio técnico especializado y repuestos originales
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/productos" class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-primary hover:text-red-400 text-white px-6 py-3 text-base">
+          Ver Productos
+          <span set:html={icons.chevronRight} />
+        </a>
+        <a href="/contacto" class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-white text-white hover:bg-red-500 hover:text-primary px-6 py-3 text-base">
+          Contactar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+import Card from './Card.astro';
+
+// Datos para la sección
+const testimonials = [
+  {
+    name: "Carlos Rodríguez",
+    role: "Productor Agrícola",
+    quote: "Los tractores Massey Ferguson adquiridos en Mavepo han superado todas mis expectativas. El servicio post-venta es excepcional.",
+  },
+  {
+    name: "María González",
+    role: "Gerente de Operaciones",
+    quote: "La calidad de los repuestos y la rapidez del servicio técnico nos han permitido minimizar los tiempos de inactividad.",
+  },
+  {
+    name: "Juan Pérez",
+    role: "Agricultor",
+    quote: "El asesoramiento recibido por parte del equipo de Mavepo fue clave para elegir el equipo que mejor se adaptaba a mis necesidades.",
+  },
+];
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Lo Que Dicen Nuestros Clientes</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        La satisfacción de nuestros clientes es nuestro mayor orgullo
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <Card class="p-6">
+          <div class="p-0">
+            <div class="flex flex-col h-full">
+              <div class="mb-4 text-red-500">
+                <svg class="h-8 w-8 text-primary"  fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+              <p class="text-gray-600 mb-4 flex-grow">{testimonial.quote}</p>
+              <div>
+                <p class="font-bold">{testimonial.name}</p>
+                <p class="text-gray-500 text-sm">{testimonial.role}</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+

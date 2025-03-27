@@ -1,0 +1,33 @@
+---
+// Props para personalizar el componente
+export interface Props {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+}
+
+const { 
+  title = "¿Listo para mejorar su productividad?", 
+  description = "Contáctenos hoy mismo y descubra cómo Mavepo y Massey Ferguson pueden transformar su operación agrícola", 
+  buttonText = "Solicitar Información", 
+  buttonLink = "/contacto" 
+} = Astro.props;
+---
+
+<section class="py-16 bg-red-500 text-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold mb-4">{title}</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        {description}
+      </p>
+      <a 
+        href={buttonLink} 
+        class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-white text-white hover:bg-red-700 hover:text-primary px-6 py-3 text-base"
+      >
+        {buttonText}
+      </a>
+    </div>
+  </div>
+</section>
