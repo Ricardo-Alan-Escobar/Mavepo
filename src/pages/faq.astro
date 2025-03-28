@@ -1,0 +1,216 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+// Categorías de preguntas frecuentes
+const categories = [
+  { id: "general", name: "Información General" },
+  { id: "productos", name: "Productos y Equipos" },
+  { id: "servicio", name: "Servicio Técnico" },
+  { id: "repuestos", name: "Repuestos" },
+  { id: "financiamiento", name: "Financiamiento" },
+  { id: "garantia", name: "Garantía" },
+];
+
+// Datos de preguntas frecuentes
+const faqs = {
+  general: [
+    {
+      question: "¿Cuáles son los horarios de atención de Mavepo?",
+      answer: "Nuestro horario de atención es de lunes a viernes de 8:00 a 18:00 y sábados de 9:00 a 13:00. Para servicio técnico de urgencia, contamos con un número de guardia disponible las 24 horas para nuestros clientes."
+    },
+    {
+      question: "¿Dónde están ubicadas las sucursales de Mavepo?",
+      answer: "Contamos con 5 sucursales estratégicamente ubicadas en las principales zonas agrícolas. Nuestra sede central se encuentra en Ruta Nacional 9, Km 123, y puede consultar la ubicación de todas nuestras sucursales en la sección 'Nosotros' de nuestra web."
+    },
+    {
+      question: "¿Cómo puedo contactar con un asesor comercial?",
+      answer: "Puede contactar con un asesor comercial llamando a nuestro número central +123 456 7890, completando el formulario de contacto en nuestra web, o visitando cualquiera de nuestras sucursales en horario comercial."
+    }
+  ],
+  productos: [
+    {
+      question: "¿Qué gama de productos Massey Ferguson ofrece Mavepo?",
+      answer: "En Mavepo ofrecemos la gama completa de productos Massey Ferguson, incluyendo tractores de diferentes potencias, cosechadoras, implementos agrícolas y equipos especializados. Puede consultar nuestro catálogo completo en la sección 'Productos'."
+    },
+    {
+      question: "¿Realizan demostraciones de los equipos antes de la compra?",
+      answer: "Sí, ofrecemos demostraciones de los equipos en condiciones reales de trabajo. Nuestros asesores comerciales pueden coordinar una demostración en su campo para que pueda evaluar el rendimiento del equipo en su entorno específico."
+    },
+    {
+      question: "¿Los equipos incluyen capacitación para su uso?",
+      answer: "Todos nuestros equipos incluyen capacitación para su correcto uso y mantenimiento. Nuestro equipo técnico realizará una entrega técnica completa, explicando todas las funcionalidades y recomendaciones para optimizar el rendimiento y la vida útil del equipo."
+    }
+  ],
+  servicio: [
+    {
+      question: "¿Cómo puedo solicitar un servicio técnico?",
+      answer: "Puede solicitar un servicio técnico llamando a nuestro número de atención al cliente, completando el formulario en la sección 'Servicios' de nuestra web, o contactando directamente con su asesor técnico asignado."
+    },
+    {
+      question: "¿Realizan mantenimiento preventivo programado?",
+      answer: "Sí, ofrecemos planes de mantenimiento preventivo programado para todos los equipos Massey Ferguson. Estos planes están diseñados para maximizar el rendimiento y la vida útil de su maquinaria, previniendo averías y tiempos de inactividad."
+    },
+    {
+      question: "¿Tienen servicio técnico a domicilio?",
+      answer: "Sí, contamos con unidades móviles equipadas con herramientas especializadas y técnicos certificados que pueden realizar servicios y reparaciones en su ubicación, minimizando los tiempos de inactividad de su maquinaria."
+    }
+  ],
+  repuestos: [
+    {
+      question: "¿Todos los repuestos son originales Massey Ferguson?",
+      answer: "Sí, todos los repuestos que ofrecemos son 100% originales Massey Ferguson, garantizando la calidad, el rendimiento y la compatibilidad perfecta con su equipo."
+    },
+    {
+      question: "¿Cuál es el tiempo de entrega para repuestos que no están en stock?",
+      answer: "Para repuestos que no están en nuestro stock, el tiempo de entrega habitual es de 3 a 5 días hábiles. En casos de urgencia, contamos con un servicio express que puede reducir este tiempo, sujeto a disponibilidad."
+    },
+    {
+      question: "¿Ofrecen envío de repuestos a todo el país?",
+      answer: "Sí, realizamos envíos de repuestos a todo el país a través de empresas de logística confiables. Los tiempos de entrega varían según la ubicación, pero trabajamos para que reciba sus repuestos en el menor tiempo posible."
+    }
+  ],
+  financiamiento: [
+    {
+      question: "¿Qué opciones de financiamiento ofrecen?",
+      answer: "Ofrecemos diversas opciones de financiamiento, incluyendo leasing agrícola, financiamiento directo, planes de pago flexibles y acuerdos con entidades financieras. Nuestro equipo comercial puede asesorarle sobre la mejor opción según sus necesidades específicas."
+    },
+    {
+      question: "¿Cuáles son los requisitos para acceder al financiamiento?",
+      answer: "Los requisitos varían según el tipo de financiamiento y el monto de la operación. En general, se requiere documentación que acredite su actividad agrícola, situación financiera y capacidad de pago. Nuestros asesores le guiarán durante todo el proceso."
+    },
+    {
+      question: "¿Aceptan equipos usados como parte de pago?",
+      answer: "Sí, aceptamos equipos usados como parte de pago para la adquisición de maquinaria nueva. Nuestros especialistas realizarán una tasación justa de su equipo actual, considerando su estado, antigüedad y valor de mercado."
+    }
+  ],
+  garantia: [
+    {
+      question: "¿Cuál es el período de garantía de los equipos Massey Ferguson?",
+      answer: "Los equipos Massey Ferguson cuentan con una garantía de fábrica de 2 años o 2000 horas de uso, lo que ocurra primero. Esta garantía cubre defectos de fabricación y materiales, según los términos y condiciones establecidos por el fabricante."
+    },
+    {
+      question: "¿La garantía cubre todas las partes del equipo?",
+      answer: "La garantía cubre los componentes principales del equipo, con algunas excepciones como elementos de desgaste normal (filtros, correas, etc.). Los detalles específicos de la cobertura se explican en el manual de garantía que se entrega con cada equipo."
+    },
+    {
+      question: "¿Qué debo hacer si tengo un problema cubierto por la garantía?",
+      answer: "Si experimenta un problema que considera cubierto por la garantía, debe contactar inmediatamente con nuestro departamento de servicio técnico. Un técnico evaluará la situación y, si se confirma que está cubierto por la garantía, procederemos con la reparación sin costo adicional."
+    }
+  ]
+};
+---
+<header>
+    <script type="module" src="/faq.js"></script>
+</header>
+<Layout title="Preguntas Frecuentes - Mavepo">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Page Header -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Preguntas Frecuentes</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Encuentre respuestas a las preguntas más comunes sobre nuestros productos, 
+        servicios y procesos
+      </p>
+    </div>
+    
+   
+    <!-- Search -->
+    <div class="max-w-2xl mx-auto mb-12">
+      <div class="relative">
+        <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="search" 
+          id="faq-search"
+          placeholder="Buscar preguntas frecuentes..." 
+          class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+      </div>
+    </div>
+    
+    <!-- Categories -->
+    <div class="flex flex-wrap justify-center gap-3 mb-8">
+      {categories.map((category) => (
+        <a 
+          href={`#${category.id}`} 
+          class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+        >
+          {category.name}
+        </a>
+      ))}
+    </div>
+    
+    <!-- FAQs -->
+    <div class="max-w-3xl mx-auto space-y-12">
+      <div id="search-results" class="hidden text-center py-8">
+        <p class="text-lg text-gray-600 mb-4">
+          No se encontraron resultados para "<span id="search-term"></span>"
+        </p>
+        <button 
+          id="clear-search"
+          class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+        >
+          Limpiar búsqueda
+        </button>
+      </div>
+      
+      <div id="faq-content">
+        {Object.entries(faqs).map(([category, questions]) => {
+          const categoryInfo = categories.find(c => c.id === category);
+          return (
+            <div id={category} class="faq-category">
+              <h2 class="text-2xl font-bold mb-6">{categoryInfo?.name}</h2>
+              <div class="space-y-4">
+                {questions.map((faq, index) => (
+                  <div class="border rounded-lg px-6 faq-item" data-question={faq.question} data-answer={faq.answer}>
+                    <button 
+                      class="faq-question w-full flex justify-between items-center py-4 text-left hover:text-primary"
+                      aria-expanded="false"
+                      aria-controls={`faq-answer-${category}-${index}`}
+                    >
+                      <span class="font-medium text-lg">{faq.question}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </button>
+                    <div 
+                      id={`faq-answer-${category}-${index}`}
+                      class="faq-answer pt-0 pb-4 text-gray-600 hidden"
+                    >
+                      {faq.answer}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      
+      <!-- Contact CTA -->
+      <div class="max-w-3xl mx-auto mt-16 bg-gray-50 rounded-lg p-8 text-center">
+        <h2 class="text-2xl font-bold mb-4">¿No encontró lo que buscaba?</h2>
+        <p class="text-gray-600 mb-6">
+          Si tiene alguna pregunta adicional, no dude en contactarnos. 
+          Nuestro equipo estará encantado de ayudarle.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/contacto" class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 text-sm">
+            Contactar Ahora
+          </a>
+          <a href="#" class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm">
+            Ver Todas las Preguntas
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  
+</script>
+
