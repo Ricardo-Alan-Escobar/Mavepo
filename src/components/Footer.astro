@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Logo from '../assets/LogoB.png';
+import NX from '../assets/nexsite.png';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -160,6 +161,12 @@ const currentYear = new Date().getFullYear();
           <a href="/privacidad" class="text-sm hover:text-white transition-colors">
             Política de Privacidad
           </a>
+        </div>
+        <div class="flex items-center">Desarrollado por: 
+          
+        <div class="flex items-center justify-center">
+            <a href="https://nexsite.com.mx"><img src={NX.src} alt="nexsite" class="w-22 pl-4"></a>
+        </div>
         </div>
       </div>
     </div>

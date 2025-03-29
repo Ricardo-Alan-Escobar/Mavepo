@@ -1,5 +1,9 @@
 ---
 import Card from './Card.astro';
+import { Image } from 'astro:assets';
+import Mf1 from '../assets/Tractores/mf1.png';
+import Mf2 from '../assets/Tractores/mf2.png';
+import Mf3 from '../assets/Tractores/mf3.png';
 
 // Iconos
 const icons = {
@@ -9,19 +13,19 @@ const icons = {
 // Datos para la sección
 const featuredProducts = [
   {
-    title: "Tractores Serie MF 8S",
+    title: "Tractores Serie MF 1500",
     description: "Potencia y eficiencia para las tareas más exigentes",
-    image: "/placeholder.svg?height=300&width=400",
+    image: Mf1.src,
   },
   {
-    title: "Cosechadoras IDEAL",
+    title: "MF serie classic 35-105 HP",
     description: "Tecnología de vanguardia para una cosecha perfecta",
-    image: "/placeholder.svg?height=300&width=400",
+    image: Mf2.src,
   },
   {
-    title: "Implementos Agrícolas",
+    title: "MF 2600 LR",
     description: "Soluciones completas para cada etapa del cultivo",
-    image: "/placeholder.svg?height=300&width=400",
+    image: Mf3.src,
   },
 ];
 ---
@@ -39,8 +43,8 @@ const featuredProducts = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {featuredProducts.map((product) => (
         <Card>
-          <div class="relative h-64">
-            <img src={product.image || "/placeholder.svg"} alt={product.title} class="object-cover w-full h-full" />
+          <div class="relative h-64 flex justify-center">
+            <img src={product.image || "/placeholder.svg"} alt={product.title} class="object-cover w-auto  h-full" />
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">{product.title}</h3>
