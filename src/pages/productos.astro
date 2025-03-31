@@ -1,6 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import t1 from '../assets/Tractores/mf1.png'
+import t2 from '../assets/Tractores/mf2.png'
+import t3 from '../assets/Tractores/mf3.png'
+import t4 from '../assets/Tractores/mf4.png'
+import t5 from '../assets/Tractores/mf5.png'
+import t6 from '../assets/Tractores/mf6.png'
+import t7 from '../assets/Tractores/mf7.png'
+import t8 from '../assets/Tractores/mf8.png'
+import t9 from '../assets/Tractores/mf9.png'
+import t10 from '../assets/Tractores/mf10.png'
+import t11 from '../assets/Tractores/mf11.png'
+import t12 from '../assets/Tractores/mf12.png'
+
+
 
 // Datos de productos
 const categories = [
@@ -15,28 +29,84 @@ const products = {
       id: 1,
       name: "MF 8S.245",
       description: "Tractor de alta potencia con tecnología avanzada para máxima eficiencia",
-      image: "/placeholder.svg?height=300&width=400",
+      image: t1.src,
       features: ["245 HP", "Motor AGCO Power", "Transmisión Dyna-VT"],
     },
     {
       id: 2,
       name: "MF 7S.180",
       description: "Versatilidad y rendimiento para todo tipo de tareas agrícolas",
-      image: "/placeholder.svg?height=300&width=400",
+      image: t2.src,
       features: ["180 HP", "Motor AGCO Power", "Transmisión Dyna-6"],
     },
     {
       id: 3,
       name: "MF 5S.115",
       description: "Compacto y potente, ideal para explotaciones medianas",
-      image: "/placeholder.svg?height=300&width=400",
+      image: t3.src,
       features: ["115 HP", "Motor AGCO Power", "Transmisión Dyna-4"],
     },
     {
       id: 4,
       name: "MF 4700",
       description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
-      image: "/placeholder.svg?height=300&width=400",
+      image: t4.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t5.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t6.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t7.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t8.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t9.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t10.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700", 
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t11.src,
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: t12.src,
       features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
     },
   ],
@@ -121,8 +191,8 @@ const products = {
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {items.map((product) => (
               <Card>
-                <div class="relative h-64">
-                  <img src={product.image || "/placeholder.svg"} alt={product.name} class="object-cover w-full h-full" />
+                <div class="relative h-64 flex items-center justify-center">
+                  <img src={product.image || "/placeholder.svg"} alt={product.name} class="object-cover w-auto h-full" />
                 </div>
                 <div class="p-6">
                   <h3 class="text-xl font-bold mb-2">{product.name}</h3>
@@ -135,9 +205,7 @@ const products = {
                       ))}
                     </ul>
                   </div>
-                  <button class="w-full bg-primary hover:bg-primary-hover text-white">
-                    Ver Detalles
-                  </button>
+                
                 </div>
               </Card>
             ))}
