@@ -1,0 +1,301 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import { Image } from 'astro:assets';
+import MVP from '../assets/mvp.png'
+import mvp1 from '../assets/1.png'
+import mvp2 from '../assets/2.png'
+import mvp3 from '../assets/3.png'
+import mvp4 from '../assets/4.png'
+
+// Iconos
+const icons = {
+  award: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+  users: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+  building: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>`,
+  target: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`,
+  clock: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+  mapPin: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-4 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>`,
+};
+
+// Datos para la página
+const stats = [
+  { value: "25+", label: "Años de experiencia", icon: icons.clock },
+  { value: "50+", label: "Profesionales", icon: icons.users },
+  { value: "5", label: "Sucursales", icon: icons.building },
+  { value: "1000+", label: "Clientes satisfechos", icon: icons.award },
+];
+
+const team = [
+  {
+    name: "Carlos Rodríguez",
+    position: "Director General",
+    bio: "Con más de 30 años de experiencia en el sector agrícola, lidera la visión estratégica de Mavepo.",
+    image: "/placeholder.svg?height=300&width=300"
+  },
+  {
+    name: "María González",
+    position: "Gerente Comercial",
+    bio: "Especialista en ventas con amplio conocimiento técnico sobre maquinaria agrícola Massey Ferguson.",
+    image: "/placeholder.svg?height=300&width=300"
+  },
+  {
+    name: "Juan Pérez",
+    position: "Jefe de Servicio Técnico",
+    bio: "Ingeniero mecánico certificado por Massey Ferguson con 15 años de experiencia en mantenimiento.",
+    image: "/placeholder.svg?height=300&width=300"
+  },
+  {
+    name: "Laura Martínez",
+    position: "Responsable de Repuestos",
+    bio: "Experta en logística y gestión de inventarios, garantiza la disponibilidad de repuestos originales.",
+    image: "/placeholder.svg?height=300&width=300"
+  }
+];
+
+const locations = [
+  {
+    city: "Ciudad Principal",
+    address: "Ruta Nacional 9, Km 123",
+    phone: "+123 456 7890",
+    email: "sede@mavepo.com"
+  },
+  {
+    city: "Ciudad Norte",
+    address: "Av. Agricultores 456",
+    phone: "+123 456 7891",
+    email: "norte@mavepo.com"
+  },
+  {
+    city: "Ciudad Sur",
+    address: "Ruta Provincial 22, Km 45",
+    phone: "+123 456 7892",
+    email: "sur@mavepo.com"
+  },
+  {
+    city: "Ciudad Este",
+    address: "Parque Industrial, Lote 78",
+    phone: "+123 456 7893",
+    email: "este@mavepo.com"
+  },
+  {
+    city: "Ciudad Oeste",
+    address: "Av. de los Tractores 789",
+    phone: "+123 456 7894",
+    email: "oeste@mavepo.com"
+  }
+];
+---
+
+<Layout title="Nosotros - Mavepo">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Page Header -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Sobre Mavepo</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Conozca nuestra historia, valores y el equipo que hace posible brindar 
+        soluciones integrales para el sector agrícola
+      </p>
+    </div>
+    
+    <!-- Company Overview -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+      <div class="relative h-[500px] rounded-lg overflow-hidden">
+        <Image 
+          src={MVP}
+          alt="Instalaciones de Mavepo" 
+          class="object-cover w-full h-full"
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-6">Nuestra Historia</h2>
+        <p class="text-gray-600 mb-4">
+          Fundada en 1995, Mavepo nació con la visión de transformar el sector agrícola 
+          ofreciendo maquinaria de alta calidad y un servicio técnico excepcional. Lo que 
+          comenzó como una pequeña empresa familiar, se ha convertido en un referente en 
+          la distribución de equipos Massey Ferguson en la región.
+        </p>
+        <p class="text-gray-600 mb-4">
+          A lo largo de más de 25 años, hemos crecido constantemente, ampliando nuestras 
+          instalaciones, incorporando tecnología de vanguardia y formando un equipo de 
+          profesionales altamente capacitados.
+        </p>
+        <p class="text-gray-600 mb-6">
+          Nuestra alianza estratégica con Massey Ferguson, una de las marcas más prestigiosas 
+          a nivel mundial, nos permite ofrecer soluciones integrales que responden a las 
+          necesidades específicas de cada productor agrícola.
+        </p>
+        
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          {stats.map((stat) => (
+            <div class="flex items-center gap-3">
+              <span set:html={stat.icon} />
+              <div>
+                <p class="font-bold text-2xl">{stat.value}</p>
+                <p class="text-gray-600">{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mission, Vision, Values -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <Card>
+        <div class="p-6">
+          <div class="flex justify-center mb-4" set:html={icons.target} />
+          <h3 class="text-xl font-bold mb-3 text-center">Misión</h3>
+          <p class="text-gray-600">
+            Proporcionar soluciones integrales para el sector agrícola, ofreciendo maquinaria 
+            de alta calidad, servicio técnico especializado y asesoramiento personalizado, 
+            contribuyendo al desarrollo y la productividad de nuestros clientes.
+          </p>
+        </div>
+      </Card>
+      
+      <Card>
+        <div class="p-6">
+          <div class="flex justify-center mb-4" set:html={icons.target} />
+          <h3 class="text-xl font-bold mb-3 text-center">Visión</h3>
+          <p class="text-gray-600">
+            Ser reconocidos como el distribuidor líder de maquinaria agrícola en la región, 
+            destacándonos por la excelencia en el servicio, la innovación constante y el 
+            compromiso con el éxito de nuestros clientes y el desarrollo sostenible del sector.
+          </p>
+        </div>
+      </Card>
+      
+      <Card>
+        <div class="p-6">
+          <div class="flex justify-center mb-4" set:html={icons.award} />
+          <h3 class="text-xl font-bold mb-3 text-center">Valores</h3>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-start">
+              <span class="font-bold mr-2">•</span>
+              <span>Excelencia en el servicio</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">•</span>
+              <span>Integridad y transparencia</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">•</span>
+              <span>Compromiso con el cliente</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">•</span>
+              <span>Innovación constante</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">•</span>
+              <span>Trabajo en equipo</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">•</span>
+              <span>Responsabilidad social</span>
+            </li>
+          </ul>
+        </div>
+      </Card>
+    </div>
+    
+   
+    
+    <!-- Facilities -->
+    <div class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Nuestras Instalaciones</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          Contamos con modernas instalaciones diseñadas para brindar un servicio integral 
+          y de calidad a todos nuestros clientes
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="relative h-[300px] rounded-lg overflow-hidden">
+          <img 
+            src={mvp1.src}
+            alt="Showroom Mavepo" 
+            class="object-cover w-full h-full"
+          />
+          <div class="absolute inset-0 bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold">Stock</h3>
+          </div>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden">
+          <img 
+            src={mvp2.src}
+            alt="Taller Mavepo" 
+            class="object-cover w-full h-full"
+          />
+          <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold">Sala de estar</h3>
+          </div>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden">
+          <img 
+            src={mvp3.src}
+            alt="Almacén de Repuestos Mavepo" 
+            class="object-cover w-full h-full"
+          />
+          <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold">Agencia</h3>
+          </div>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden">
+          <img 
+            src={mvp4.src}
+            alt="Centro de Capacitación Mavepo" 
+            class="object-cover w-full h-full"
+          />
+          <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold">Recepción</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Locations -->
+    <div class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Nuestras Sucursales</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          Presentes en las principales zonas agrícolas para estar siempre cerca de nuestros clientes
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {locations.map((location) => (
+          <Card>
+            <div class="p-6">
+              <div class="flex items-start">
+                <span set:html={icons.mapPin} />
+                <div>
+                  <h3 class="font-bold text-lg mb-2">{location.city}</h3>
+                  <p class="text-gray-600 mb-1">{location.address}</p>
+                  <p class="text-gray-600 mb-1">{location.phone}</p>
+                  <p class="text-gray-600">{location.email}</p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+    
+  
+    
+    <!-- CTA -->
+    <div class="bg-red-500 text-white rounded-lg p-12 text-center">
+      <h2 class="text-3xl font-bold mb-4">¿Quiere formar parte de nuestro equipo?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Estamos siempre en búsqueda de talento para seguir creciendo y mejorando nuestro servicio
+      </p>
+      <button class="px-6 bg-sky-600 cursor-pointer hover:bg-sky-500 py-3 text-base font-medium rounded-md">
+        Linkedin
+      </button>
+    </div>
+  </div>
+</Layout>
+

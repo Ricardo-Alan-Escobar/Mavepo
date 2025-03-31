@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+// Datos de productos
+const categories = [
+  { id: "tractores", name: "Tractores" },
+  { id: "cosechadoras", name: "Cosechadoras" },
+  { id: "implementos", name: "Implementos" },
+];
+
+const products = {
+  tractores: [
+    {
+      id: 1,
+      name: "MF 8S.245",
+      description: "Tractor de alta potencia con tecnología avanzada para máxima eficiencia",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["245 HP", "Motor AGCO Power", "Transmisión Dyna-VT"],
+    },
+    {
+      id: 2,
+      name: "MF 7S.180",
+      description: "Versatilidad y rendimiento para todo tipo de tareas agrícolas",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["180 HP", "Motor AGCO Power", "Transmisión Dyna-6"],
+    },
+    {
+      id: 3,
+      name: "MF 5S.115",
+      description: "Compacto y potente, ideal para explotaciones medianas",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["115 HP", "Motor AGCO Power", "Transmisión Dyna-4"],
+    },
+    {
+      id: 4,
+      name: "MF 4700",
+      description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["100 HP", "Motor AGCO Power", "Transmisión 12x12"],
+    },
+  ],
+  cosechadoras: [
+    {
+      id: 1,
+      name: "IDEAL 9",
+      description: "La cosechadora más avanzada con tecnología de vanguardia",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["647 HP", "Rotor Dual", "IDEALharvest™"],
+    },
+    {
+      id: 2,
+      name: "IDEAL 8",
+      description: "Máxima productividad y calidad de grano excepcional",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["538 HP", "Rotor Dual", "IDEALbalance™"],
+    },
+    {
+      id: 3,
+      name: "IDEAL 7",
+      description: "Eficiencia y rendimiento para explotaciones medianas",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["451 HP", "Rotor Simple", "TrakRide™"],
+    },
+  ],
+  implementos: [
+    {
+      id: 1,
+      name: "Sembradoras MF 9000",
+      description: "Precisión y eficiencia para una siembra perfecta",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["Múltiples configuraciones", "Sistema de dosificación preciso", "Monitoreo electrónico"],
+    },
+    {
+      id: 2,
+      name: "Pulverizadoras MF 9300",
+      description: "Aplicación uniforme y precisa de productos fitosanitarios",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["Barra de 36m", "Tanque de 6000L", "Control de secciones"],
+    },
+    {
+      id: 3,
+      name: "Empacadoras MF 2200",
+      description: "Pacas de alta densidad y calidad superior",
+      image: "/placeholder.svg?height=300&width=400",
+      features: ["Pacas rectangulares", "Sistema de atado doble", "Monitor C1000"],
+    },
+  ],
+};
+---
+
+<Layout title="Productos - Mavepo">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Page Header -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Nuestros Productos</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Descubra la amplia gama de maquinaria agrícola Massey Ferguson, diseñada para maximizar su productividad y
+        eficiencia en el campo
+      </p>
+    </div>
+
+    <!-- Product Categories Tabs -->
+    <div class="mb-12">
+      <div class="flex flex-wrap justify-center mb-8">
+        {categories.map((category, index) => (
+          <button 
+            class={`px-4 py-2 mx-1 mb-2 rounded-md font-medium ${index === 0 ? 'bg-red-100 text-gray-700 cursor-pointer' : 'cursor-pointer bg-red-100 text-gray-700 hover:bg-red-200'}`}
+            data-tab={category.id}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+
+      {Object.entries(products).map(([category, items], categoryIndex) => (
+        <div 
+          class={`tab-content ${categoryIndex === 0 ? 'block' : 'hidden'}`} 
+          id={`tab-${category}`}
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {items.map((product) => (
+              <Card>
+                <div class="relative h-64">
+                  <img src={product.image || "/placeholder.svg"} alt={product.name} class="object-cover w-full h-full" />
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">{product.name}</h3>
+                  <p class="text-gray-600 mb-4">{product.description}</p>
+                  <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Características:</h4>
+                    <ul class="list-disc pl-5 text-gray-600">
+                      {product.features.map((feature) => (
+                        <li>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <button class="w-full bg-primary hover:bg-primary-hover text-white">
+                    Ver Detalles
+                  </button>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-gray-100 rounded-lg p-8 text-center">
+      <h2 class="text-2xl font-bold mb-4">¿Necesita asesoramiento personalizado?</h2>
+      <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+        Nuestro equipo de especialistas está disponible para ayudarle a elegir el equipo que mejor se adapte a sus
+        necesidades específicas
+      </p>
+      <a href="/contacto"><button class="bg-red-500 hover:bg-red-600 cursor-pointer text-white px-6 py-3 text-base font-medium rounded-md inline-flex items-center">
+        Contactar con un Asesor
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button></a>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Tabs functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('[data-tab]');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        
+        // Update active tab button
+        tabButtons.forEach(btn => {
+          if (btn.getAttribute('data-tab') === tabId) {
+            btn.classList.add('bg-red-100', 'text-black');
+            btn.classList.remove('bg-red-100', 'text-gray-700', 'hover:bg-red-200');
+          } else {
+            btn.classList.remove('bg-red-100', 'text-black');
+            btn.classList.add('bg-red-100', 'text-gray-700', 'hover:bg-red-200');
+          }
+        });
+        
+        // Show active tab content
+        tabContents.forEach(content => {
+          if (content.id === `tab-${tabId}`) {
+            content.classList.remove('hidden');
+            content.classList.add('block');
+          } else {
+            content.classList.add('hidden');
+            content.classList.remove('block');
+          }
+        });
+      });
+    });
+  });
+</script>
+
