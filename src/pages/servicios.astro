@@ -1,0 +1,863 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+
+// Iconos
+const icons = {
+  chevronRight: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>`,
+  wrench: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+  tools: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>`,
+  shoppingBag: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`,
+  truck: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>`,
+  clipboard: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 14l2 2 4-4"></path></svg>`,
+  headphones: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>`,
+  check: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+  calendar: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+  clock: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+  users: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+  star: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+  arrowRight: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
+};
+
+// Datos de servicios
+const servicios = [
+  {
+    id: "mantenimiento",
+    title: "Servicio Técnico y Mantenimiento",
+    shortDescription: "Nuestro equipo de técnicos certificados por Massey Ferguson garantiza el óptimo funcionamiento de su maquinaria agrícola.",
+    longDescription: "En Mavepo, contamos con un equipo de técnicos altamente capacitados y certificados por Massey Ferguson para brindar un servicio técnico de excelencia. Nuestro objetivo es garantizar el óptimo funcionamiento de su maquinaria agrícola, maximizando su rendimiento y prolongando su vida útil. Ofrecemos servicios de mantenimiento preventivo y correctivo, diagnóstico computarizado, reparaciones con garantía y atención de emergencias las 24 horas.",
+    image: "/placeholder.svg?height=400&width=600",
+    icon: icons.wrench,
+    features: [
+      "Mantenimiento preventivo programado",
+      "Reparaciones con garantía",
+      "Diagnóstico computarizado",
+      "Servicio a domicilio",
+      "Contratos de mantenimiento",
+      "Atención de emergencias 24/7"
+    ],
+    benefits: [
+      "Reducción de tiempos de inactividad",
+      "Prevención de averías costosas",
+      "Optimización del rendimiento de la maquinaria",
+      "Extensión de la vida útil de los equipos",
+      "Ahorro en costos de reparación a largo plazo"
+    ],
+    plans: [
+      {
+        name: "Plan Básico",
+        description: "Mantenimiento preventivo esencial para equipos con uso moderado",
+        features: [
+          "Revisión general cada 250 horas",
+          "Cambio de aceite y filtros",
+          "Diagnóstico básico de sistemas",
+          "Informe de estado del equipo"
+        ]
+      },
+      {
+        name: "Plan Premium",
+        description: "Mantenimiento completo para equipos con uso intensivo",
+        features: [
+          "Revisión completa cada 250 horas",
+          "Cambio de aceite y todos los filtros",
+          "Diagnóstico computarizado avanzado",
+          "Ajustes y calibraciones",
+          "Informe detallado con recomendaciones",
+          "Atención prioritaria"
+        ]
+      },
+      {
+        name: "Plan Integral",
+        description: "Solución completa para flotas de maquinaria",
+        features: [
+          "Todo lo incluido en el Plan Premium",
+          "Mantenimiento programado de toda la flota",
+          "Técnico asignado permanente",
+          "Gestión de repuestos y stock crítico",
+          "Capacitación para operadores",
+          "Respuesta de emergencia en 4 horas"
+        ]
+      }
+    ],
+    testimonials: [
+      {
+        quote: "El servicio técnico de Mavepo es excepcional. Resolvieron un problema crítico en plena cosecha en tiempo récord, evitándonos grandes pérdidas.",
+        author: "Roberto Méndez",
+        company: "Productor de Soja",
+        rating: 5
+      },
+      {
+        quote: "Gracias al plan de mantenimiento preventivo, hemos reducido significativamente los tiempos de inactividad de nuestra maquinaria.",
+        author: "Carlos Gutiérrez",
+        company: "Agrícola El Amanecer",
+        rating: 5
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuál es el tiempo de respuesta para emergencias?",
+        answer: "Para clientes con contrato de mantenimiento, nuestro tiempo de respuesta es de 4 a 8 horas dependiendo de la ubicación. Para servicios estándar, procuramos atender todas las emergencias en un plazo máximo de 24 horas."
+      },
+      {
+        question: "¿Realizan mantenimiento a domicilio?",
+        answer: "Sí, contamos con unidades móviles completamente equipadas que pueden realizar la mayoría de los servicios de mantenimiento y reparaciones en su establecimiento, minimizando los tiempos de inactividad de su maquinaria."
+      },
+      {
+        question: "¿Qué garantía ofrecen por las reparaciones?",
+        answer: "Todas nuestras reparaciones cuentan con una garantía de 6 meses en mano de obra y repuestos. Para reparaciones mayores o reconstrucciones, la garantía puede extenderse hasta 12 meses según el tipo de trabajo realizado."
+      }
+    ],
+    cta: "Solicitar Servicio Técnico"
+  },
+  {
+    id: "repuestos",
+    title: "Repuestos Originales",
+    shortDescription: "Disponemos de un amplio stock de repuestos originales Massey Ferguson para garantizar el rendimiento y la durabilidad de su equipo.",
+    longDescription: "En Mavepo entendemos la importancia de mantener su maquinaria agrícola en óptimas condiciones, por eso contamos con un amplio inventario de repuestos 100% originales Massey Ferguson. Nuestro departamento de repuestos está comprometido con brindarle la mejor calidad, disponibilidad inmediata y asesoramiento técnico especializado para garantizar el rendimiento y la durabilidad de su equipo.",
+    image: "/placeholder.svg?height=400&width=600",
+    icon: icons.tools,
+    features: [
+      "Repuestos 100% originales",
+      "Amplio inventario disponible",
+      "Asesoramiento técnico especializado",
+      "Garantía de fábrica",
+      "Envíos a todo el país",
+      "Sistema de pedidos online"
+    ],
+    benefits: [
+      "Máxima calidad y durabilidad",
+      "Compatibilidad perfecta con su equipo",
+      "Mantenimiento del valor de reventa de su maquinaria",
+      "Reducción de tiempos de inactividad",
+      "Optimización del rendimiento de su equipo"
+    ],
+    categories: [
+      {
+        name: "Motor y Sistemas de Refrigeración",
+        items: ["Filtros", "Bombas de agua", "Termostatos", "Radiadores", "Mangueras"]
+      },
+      {
+        name: "Transmisión y Tren de Potencia",
+        items: ["Embragues", "Cajas de cambio", "Diferenciales", "Ejes", "Juntas"]
+      },
+      {
+        name: "Sistema Hidráulico",
+        items: ["Bombas", "Válvulas", "Cilindros", "Mangueras", "Conectores"]
+      },
+      {
+        name: "Sistema Eléctrico",
+        items: ["Alternadores", "Motores de arranque", "Baterías", "Sensores", "Arneses"]
+      },
+      {
+        name: "Cabina y Controles",
+        items: ["Asientos", "Paneles", "Aire acondicionado", "Vidrios", "Espejos"]
+      }
+    ],
+    testimonials: [
+      {
+        quote: "La calidad de los repuestos originales y la rapidez en la entrega han sido fundamentales para mantener nuestra flota operativa sin interrupciones.",
+        author: "Laura Fernández",
+        company: "Gerente de Operaciones Agrícolas",
+        rating: 5
+      },
+      {
+        quote: "El sistema de pedidos online y la disponibilidad inmediata de repuestos nos ha permitido reducir significativamente los tiempos de reparación.",
+        author: "Miguel Sánchez",
+        company: "Taller Agrícola San Martín",
+        rating: 4
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuál es el tiempo de entrega para repuestos que no están en stock?",
+        answer: "Para repuestos que no están en nuestro stock, el tiempo de entrega habitual es de 3 a 5 días hábiles. En casos de urgencia, contamos con un servicio express que puede reducir este tiempo, sujeto a disponibilidad."
+      },
+      {
+        question: "¿Ofrecen envío de repuestos a todo el país?",
+        answer: "Sí, realizamos envíos de repuestos a todo el país a través de empresas de logística confiables. Los tiempos de entrega varían según la ubicación, pero trabajamos para que reciba sus repuestos en el menor tiempo posible."
+      },
+      {
+        question: "¿Cómo puedo verificar si un repuesto es compatible con mi equipo?",
+        answer: "Nuestro equipo técnico puede ayudarle a identificar el repuesto exacto que necesita según el modelo y número de serie de su equipo. También puede consultar nuestro catálogo online donde podrá filtrar por modelo específico."
+      }
+    ],
+    cta: "Consultar Disponibilidad"
+  },
+  {
+    id: "financiamiento",
+    title: "Opciones de Financiamiento",
+    shortDescription: "Ofrecemos diversas alternativas de financiamiento para facilitar la adquisición de su maquinaria agrícola Massey Ferguson.",
+    longDescription: "En Mavepo entendemos que la inversión en maquinaria agrícola es significativa, por eso ofrecemos diversas alternativas de financiamiento adaptadas a las necesidades específicas de cada cliente. Trabajamos con las principales entidades financieras del sector agrícola para brindarle opciones flexibles que le permitan adquirir la maquinaria Massey Ferguson que necesita para optimizar su operación.",
+    image: "/placeholder.svg?height=400&width=600",
+    icon: icons.shoppingBag,
+    features: [
+      "Leasing agrícola",
+      "Financiamiento directo",
+      "Planes de pago flexibles",
+      "Tasas preferenciales",
+      "Asesoramiento financiero",
+      "Opciones de refinanciamiento"
+    ],
+    benefits: [
+      "Adquisición inmediata de maquinaria sin descapitalización",
+      "Cuotas adaptadas al flujo de caja de su operación",
+      "Posibilidad de renovación tecnológica periódica",
+      "Beneficios impositivos según la modalidad elegida",
+      "Preservación de líneas de crédito bancarias"
+    ],
+    options: [
+      {
+        name: "Leasing Agrícola",
+        description: "Ideal para empresas que buscan renovar su maquinaria periódicamente",
+        features: [
+          "Plazo de 36 a 60 meses",
+          "Opción de compra al finalizar el contrato",
+          "Cuotas deducibles de impuestos",
+          "Sin afectación de líneas de crédito bancarias",
+          "Posibilidad de incluir seguros y mantenimiento"
+        ]
+      },
+      {
+        name: "Financiamiento Directo",
+        description: "Financiación directa a través de Mavepo para adquisición de maquinaria",
+        features: [
+          "Plazo de hasta 48 meses",
+          "Mínima documentación requerida",
+          "Aprobación rápida",
+          "Tasas competitivas",
+          "Planes personalizados según campaña agrícola"
+        ]
+      },
+      {
+        name: "Crédito Bancario",
+        description: "Líneas especiales con entidades financieras asociadas",
+        features: [
+          "Tasas preferenciales para clientes Mavepo",
+          "Plazos extendidos de hasta 60 meses",
+          "Período de gracia adaptado a ciclos productivos",
+          "Opciones en pesos o dólares",
+          "Garantías flexibles"
+        ]
+      }
+    ],
+    testimonials: [
+      {
+        quote: "Las opciones de financiamiento que me ofrecieron me permitieron renovar mi maquinaria en el momento justo. El asesoramiento fue clave para tomar la mejor decisión.",
+        author: "Carlos Gutiérrez",
+        company: "Contratista Agrícola",
+        rating: 5
+      },
+      {
+        quote: "El leasing agrícola nos permitió incorporar tecnología de punta sin comprometer nuestro capital de trabajo. Excelente asesoramiento financiero.",
+        author: "Javier Martínez",
+        company: "Establecimiento El Amanecer",
+        rating: 5
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuáles son los requisitos para acceder al financiamiento?",
+        answer: "Los requisitos varían según el tipo de financiamiento y el monto de la operación. En general, se requiere documentación que acredite su actividad agrícola, situación financiera y capacidad de pago. Nuestros asesores le guiarán durante todo el proceso."
+      },
+      {
+        question: "¿Aceptan equipos usados como parte de pago?",
+        answer: "Sí, aceptamos equipos usados como parte de pago para la adquisición de maquinaria nueva. Nuestros especialistas realizarán una tasación justa de su equipo actual, considerando su estado, antigüedad y valor de mercado."
+      },
+      {
+        question: "¿Puedo financiar también implementos y accesorios?",
+        answer: "Sí, nuestras opciones de financiamiento cubren no solo tractores y cosechadoras, sino también implementos, accesorios y equipamiento adicional. Incluso puede incluirlos en el mismo plan de financiación que la maquinaria principal."
+      }
+    ],
+    cta: "Solicitar Información"
+  },
+  {
+    id: "logistica",
+    title: "Logística y Entrega",
+    shortDescription: "Contamos con un servicio de logística especializado para la entrega segura y puntual de su maquinaria agrícola.",
+    longDescription: "En Mavepo disponemos de un servicio de logística especializado diseñado específicamente para el transporte y entrega de maquinaria agrícola. Nuestro equipo de profesionales se encarga de coordinar cada detalle para garantizar que su equipo llegue a destino en perfectas condiciones y en el tiempo acordado, brindándole tranquilidad y confianza en todo momento.",
+    image: "/placeholder.svg?height=400&width=600",
+    icon: icons.truck,
+    features: [
+      "Entrega a domicilio",
+      "Transporte especializado",
+      "Seguimiento en tiempo real",
+      "Coordinación de entregas",
+      "Cobertura nacional",
+      "Seguro de transporte"
+    ],
+    benefits: [
+      "Entrega segura y profesional de su maquinaria",
+      "Reducción de riesgos durante el transporte",
+      "Planificación precisa de recepción de equipos",
+      "Tranquilidad y confianza en todo el proceso",
+      "Capacitación inicial incluida en la entrega"
+    ],
+    process: [
+      {
+        step: 1,
+        title: "Coordinación",
+        description: "Nuestro equipo de logística se pone en contacto con usted para coordinar la fecha y hora de entrega más conveniente."
+      },
+      {
+        step: 2,
+        title: "Preparación",
+        description: "Realizamos una inspección completa y preparación del equipo antes de la carga para garantizar que todo esté en perfectas condiciones."
+      },
+      {
+        step: 3,
+        title: "Transporte",
+        description: "Utilizamos transportes especializados con todas las medidas de seguridad necesarias para el traslado de maquinaria agrícola."
+      },
+      {
+        step: 4,
+        title: "Seguimiento",
+        description: "Le proporcionamos información en tiempo real sobre el estado y ubicación de su equipo durante todo el trayecto."
+      },
+      {
+        step: 5,
+        title: "Entrega",
+        description: "Nuestro personal capacitado realiza la entrega en su establecimiento, incluyendo una explicación básica del funcionamiento del equipo."
+      },
+      {
+        step: 6,
+        title: "Capacitación",
+        description: "Ofrecemos una capacitación inicial para el correcto uso y mantenimiento básico de la maquinaria entregada."
+      }
+    ],
+    testimonials: [
+      {
+        quote: "La entrega de mi nuevo tractor fue impecable. El equipo de logística coordinó todo perfectamente y recibí mi maquinaria en el tiempo acordado y en perfectas condiciones.",
+        author: "Pedro Gómez",
+        company: "Establecimiento San José",
+        rating: 5
+      },
+      {
+        quote: "El seguimiento en tiempo real me permitió organizar mi equipo para la recepción. La capacitación inicial fue muy útil para comenzar a operar inmediatamente.",
+        author: "Ana Rodríguez",
+        company: "Agrícola El Paraíso",
+        rating: 5
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuál es el tiempo estimado de entrega después de la compra?",
+        answer: "El tiempo de entrega varía según la disponibilidad del equipo y su ubicación. Para equipos en stock, podemos coordinar la entrega en un plazo de 3 a 5 días hábiles. Para equipos que requieren configuraciones especiales, el plazo puede extenderse a 2-3 semanas."
+      },
+      {
+        question: "¿El servicio de entrega incluye la puesta en marcha del equipo?",
+        answer: "Sí, nuestro servicio de entrega incluye la descarga, verificación inicial y puesta en marcha básica del equipo. Además, proporcionamos una capacitación inicial para el operador sobre el funcionamiento básico y mantenimiento diario."
+      },
+      {
+        question: "¿Qué cobertura tiene el seguro de transporte?",
+        answer: "Nuestro seguro de transporte cubre cualquier daño que pueda sufrir el equipo durante el traslado, desde que sale de nuestras instalaciones hasta que es entregado en su establecimiento. Esto incluye daños por accidentes, inclemencias climáticas o cualquier otro imprevisto durante el trayecto."
+      }
+    ],
+    cta: "Consultar Entregas"
+  }
+];
+
+// Obtener el servicio activo desde la URL (si existe)
+const url = new URL(Astro.request.url);
+const activeServiceId = url.searchParams.get('servicio') || 'mantenimiento';
+const activeService = servicios.find(s => s.id === activeServiceId) || servicios[0];
+---
+
+<Layout title="Servicios - Mavepo">
+  <div class="relative bg-gradient-to-b from-gray-50 to-white">
+    <!-- Hero Section -->
+    <div class="relative py-20 overflow-hidden">
+      <div class="absolute inset-0 bg-primary opacity-5 z-0"></div>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-red-700">Nuestros Servicios</h1>
+          <p class="text-xl text-gray-600 mb-10">
+            En Mavepo ofrecemos soluciones integrales para garantizar el máximo rendimiento 
+            y durabilidad de su maquinaria agrícola Massey Ferguson
+          </p>
+          <div class="flex justify-center">
+            <a href="#servicios" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary hover:bg-primary-hover shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
+              Explorar Servicios
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Decorative Elements -->
+      <div class="absolute -bottom-6 left-0 w-full overflow-hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto">
+          <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Services Overview -->
+    <div id="servicios" class="py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex overflow-x-auto pb-8 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
+          <div class="flex gap-6">
+            {servicios.map((servicio) => (
+              <div class="snap-center flex-shrink-0 w-[300px] md:w-[350px]">
+                <div class={`h-full bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 ${servicio.id === activeServiceId ? 'ring-4 ring-primary' : ''}`}>
+                  <div class="p-6">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-2xl flex items-center justify-center mb-6">
+                      <div set:html={servicio.icon} />
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">{servicio.title}</h3>
+                    <p class="text-gray-600 mb-6">{servicio.shortDescription}</p>
+                    <a 
+                      href={`?servicio=${servicio.id}#detalle-servicio`} 
+                      class={`inline-flex items-center justify-center w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${servicio.id === activeServiceId ? 'bg-primary text-white hover:bg-primary-hover' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+                    >
+                      Ver Detalles
+                      <span set:html={icons.arrowRight} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Detailed Service -->
+    <div id="detalle-servicio" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-16">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="relative h-[400px] lg:h-auto">
+              <img 
+                src={activeService.image || "/placeholder.svg"} 
+                alt={activeService.title} 
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40 flex items-center">
+                <div class="p-12 text-white">
+                  <h2 class="text-3xl font-bold mb-4">{activeService.title}</h2>
+                  <p class="text-white/90 text-lg">{activeService.shortDescription}</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-12">
+              <p class="text-gray-600 mb-8 leading-relaxed">
+                {activeService.longDescription}
+              </p>
+              <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-4">Características del servicio:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {activeService.features.map((feature) => (
+                    <div class="flex items-start bg-gray-50 p-3 rounded-xl">
+                      <span set:html={icons.check} />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <a href="/contacto" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-medium text-white bg-primary hover:bg-primary-hover shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
+                {activeService.cta}
+                <span set:html={icons.arrowRight} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="mb-12">
+          <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <button class="tab-button bg-primary text-white py-3 px-6 rounded-full font-medium text-sm shadow-md" data-tab="benefits">
+              Beneficios
+            </button>
+            {activeService.plans && (
+              <button class="tab-button bg-white text-gray-700 py-3 px-6 rounded-full font-medium text-sm shadow-md hover:bg-gray-50" data-tab="plans">
+                Planes
+              </button>
+            )}
+            {activeService.categories && (
+              <button class="tab-button bg-white text-gray-700 py-3 px-6 rounded-full font-medium text-sm shadow-md hover:bg-gray-50" data-tab="categories">
+                Categorías
+              </button>
+            )}
+            {activeService.process && (
+              <button class="tab-button bg-white text-gray-700 py-3 px-6 rounded-full font-medium text-sm shadow-md hover:bg-gray-50" data-tab="process">
+                Proceso
+              </button>
+            )}
+            {activeService.options && (
+              <button class="tab-button bg-white text-gray-700 py-3 px-6 rounded-full font-medium text-sm shadow-md hover:bg-gray-50" data-tab="options">
+                Opciones
+              </button>
+            )}
+            <button class="tab-button bg-white text-gray-700 py-3 px-6 rounded-full font-medium text-sm shadow-md hover:bg-gray-50" data-tab="testimonials">
+              Testimonios
+            </button>
+            <button class="tab-button bg-white text-gray-700 py-3 px-6 rounded-full font-medium text-sm shadow-md hover:bg-gray-50" data-tab="faqs">
+              Preguntas Frecuentes
+            </button>
+          </div>
+
+          <!-- Tab Content -->
+          <div class="bg-white rounded-3xl shadow-lg p-8">
+            <!-- Benefits Tab -->
+            <div id="tab-benefits" class="tab-content">
+              <h3 class="text-2xl font-bold mb-8 text-center">Beneficios</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {activeService.benefits.map((benefit, index) => (
+                  <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start">
+                      <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        {index + 1}
+                      </div>
+                      <p class="text-gray-700">{benefit}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Plans Tab -->
+            {activeService.plans && (
+              <div id="tab-plans" class="tab-content hidden">
+                <h3 class="text-2xl font-bold mb-8 text-center">Planes de Servicio</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {activeService.plans.map((plan, index) => (
+                    <div class={`bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 ${index === 1 ? 'ring-2 ring-primary relative' : ''}`}>
+                      {index === 1 && (
+                        <div class="absolute top-0 left-0 right-0 bg-primary text-white text-center py-1 text-sm font-medium">
+                          Recomendado
+                        </div>
+                      )}
+                      <div class={`p-6 ${index === 1 ? 'pt-8' : ''}`}>
+                        <h4 class="text-xl font-bold mb-2">{plan.name}</h4>
+                        <p class="text-gray-600 mb-6">{plan.description}</p>
+                        <div class="space-y-3 mb-8">
+                          {plan.features.map((feature) => (
+                            <div class="flex items-start">
+                              <span set:html={icons.check} />
+                              <span class="text-gray-700">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <a href="/contacto" class={`inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-200 ${index === 1 ? 'bg-primary text-white hover:bg-primary-hover' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>
+                          Solicitar Información
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <!-- Categories Tab -->
+            {activeService.categories && (
+              <div id="tab-categories" class="tab-content hidden">
+                <h3 class="text-2xl font-bold mb-8 text-center">Categorías de Repuestos</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {activeService.categories.map((category) => (
+                    <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <h4 class="text-xl font-bold mb-4 flex items-center">
+                        <span set:html={icons.check} />
+                        {category.name}
+                      </h4>
+                      <div class="grid grid-cols-2 gap-2">
+                        {category.items.map((item) => (
+                          <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <!-- Process Tab -->
+            {activeService.process && (
+              <div id="tab-process" class="tab-content hidden">
+                <h3 class="text-2xl font-bold mb-8 text-center">Nuestro Proceso</h3>
+                <div class="relative">
+                  <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2"></div>
+                  <div class="space-y-12">
+                    {activeService.process.map((step, index) => (
+                      <div class="relative">
+                        <div class="hidden md:flex absolute left-1/2 top-0 -mt-3 w-12 h-12 rounded-full bg-primary text-white items-center justify-center font-bold transform -translate-x-1/2 shadow-lg">
+                          {step.step}
+                        </div>
+                        <div class={`md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:text-right' : 'md:ml-auto'} bg-white p-6 rounded-2xl shadow-md`}>
+                          <div class="md:hidden w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold mb-4 shadow-lg">
+                            {step.step}
+                          </div>
+                          <h4 class="text-xl font-bold mb-2">{step.title}</h4>
+                          <p class="text-gray-600">{step.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <!-- Options Tab -->
+            {activeService.options && (
+              <div id="tab-options" class="tab-content hidden">
+                <h3 class="text-2xl font-bold mb-8 text-center">Opciones de Financiamiento</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {activeService.options.map((option, index) => (
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105">
+                      <div class="h-2 bg-primary"></div>
+                      <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">{option.name}</h4>
+                        <p class="text-gray-600 mb-6">{option.description}</p>
+                        <div class="space-y-3 mb-8">
+                          {option.features.map((feature) => (
+                            <div class="flex items-start">
+                              <span set:html={icons.check} />
+                              <span class="text-gray-700">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <a href="/contacto" class="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition-all duration-200">
+                          Solicitar Información
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <!-- Testimonials Tab -->
+            <div id="tab-testimonials" class="tab-content hidden">
+              <h3 class="text-2xl font-bold mb-8 text-center">Testimonios de Clientes</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {activeService.testimonials.map((testimonial) => (
+                  <div class="bg-gray-50 rounded-2xl p-8 shadow-md relative">
+                    <div class="absolute top-0 right-0 transform translate-x-4 -translate-y-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                      <svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">{testimonial.quote}</p>
+                    <div>
+                      <div class="flex mb-2">
+                        {Array.from({ length: testimonial.rating }).map(() => (
+                          <span set:html={icons.star} />
+                        ))}
+                      </div>
+                      <p class="font-bold">{testimonial.author}</p>
+                      <p class="text-gray-500 text-sm">{testimonial.company}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- FAQs Tab -->
+            <div id="tab-faqs" class="tab-content hidden">
+              <h3 class="text-2xl font-bold mb-8 text-center">Preguntas Frecuentes</h3>
+              <div class="max-w-3xl mx-auto space-y-4">
+                {activeService.faqs.map((faq, index) => (
+                  <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <button 
+                      class="faq-question w-full flex justify-between items-center p-6 text-left hover:text-primary focus:outline-none"
+                      aria-expanded="false"
+                      aria-controls={`faq-answer-${index}`}
+                    >
+                      <span class="font-medium text-lg">{faq.question}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                      </svg>
+                    </button>
+                    <div 
+                      id={`faq-answer-${index}`}
+                      class="faq-answer px-6 pb-6 pt-0 text-gray-600 hidden"
+                    >
+                      {faq.answer}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Process -->
+    <div class="py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Nuestro Proceso de Servicio</h2>
+          <p class="text-gray-600">
+            Seguimos un proceso estructurado para garantizar la máxima calidad y eficiencia en todos nuestros servicios
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              step: "1",
+              title: "Diagnóstico",
+              description: "Realizamos una evaluación completa de su equipo para identificar con precisión cualquier problema o necesidad de mantenimiento.",
+              icon: icons.clipboard
+            },
+            {
+              step: "2",
+              title: "Presupuesto",
+              description: "Elaboramos un presupuesto detallado y transparente, explicando cada aspecto del servicio requerido.",
+              icon: icons.shoppingBag
+            },
+            {
+              step: "3",
+              title: "Ejecución y Seguimiento",
+              description: "Nuestros técnicos certificados realizan el trabajo con la máxima calidad y le mantenemos informado durante todo el proceso.",
+              icon: icons.headphones
+            }
+          ].map((step) => (
+            <div class="relative group">
+              <div class="bg-white rounded-2xl p-8 shadow-lg h-full transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg">
+                  {step.step}
+                </div>
+                <div class="text-center pt-8">
+                  <div class="flex justify-center mb-4" set:html={step.icon} />
+                  <h3 class="text-xl font-bold mb-3">{step.title}</h3>
+                  <p class="text-gray-600">{step.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTA -->
+    <div class="py-16 bg-gradient-to-r from-primary to-red-700">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center text-white">
+          <h2 class="text-3xl font-bold mb-4">¿Necesita asistencia técnica?</h2>
+          <p class="text-xl mb-8 text-white/90">
+            Nuestro equipo de especialistas está disponible para ayudarle con cualquier consulta o servicio que necesite
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="/contacto" class="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-200">
+              Solicitar Servicio
+            </a>
+            <a href="/contacto" class="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium bg-white text-primary hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
+              Contactar Ahora
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+// Tabs functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+      
+      // Update active tab button
+      tabButtons.forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.classList.remove('bg-white', 'text-gray-700', 'hover:bg-gray-50');
+          btn.classList.add('bg-primary', 'text-white');
+        } else {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-gray-50');
+        }
+      });
+      
+      // Show active tab content
+      tabContents.forEach(content => {
+        if (content.id === `tab-${tabId}`) {
+          content.classList.remove('hidden');
+        } else {
+          content.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // FAQ accordion functionality
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      const icon = question.querySelector('svg');
+      
+      // Toggle answer visibility
+      answer.classList.toggle('hidden');
+      
+      // Update aria-expanded
+      const expanded = answer.classList.contains('hidden') ? 'false' : 'true';
+      question.setAttribute('aria-expanded', expanded);
+      
+      // Rotate icon
+      if (expanded === 'true') {
+        icon.classList.add('rotate-45');
+      } else {
+        icon.classList.remove('rotate-45');
+      }
+    });
+  });
+
+  // Smooth scroll to sections
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // If there's a hash in the URL, scroll to it after page load
+  if (window.location.hash) {
+    const targetElement = document.getElementById(window.location.hash.substring(1));
+    if (targetElement) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
+  }
+
+  // Add scrollbar-hide utility if not already defined
+  if (!document.querySelector('style#scrollbar-hide')) {
+    const style = document.createElement('style');
+    style.id = 'scrollbar-hide';
+    style.textContent = `
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+});
+</script>
+
