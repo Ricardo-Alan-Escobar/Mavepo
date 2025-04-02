@@ -30,9 +30,9 @@ const featuredProducts = [
 ];
 ---
 
-<section class="py-16 bg-gray-50">
+<section id="featured-products" class="py-16 bg-gray-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
+    <div class="text-center mb-12 fade-in">
       <h2 class="text-3xl font-bold mb-4">Equipos Destacados</h2>
       <p class="text-gray-600 max-w-2xl mx-auto">
         Descubra nuestra selección de tractores y maquinaria agrícola Massey Ferguson, diseñados para maximizar su
@@ -41,23 +41,29 @@ const featuredProducts = [
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {featuredProducts.map((product) => (
-        <Card>
-          <div class="relative h-64 flex justify-center">
-            <img src={product.image || "/placeholder.svg"} alt={product.title} class="object-cover w-auto  h-full" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">{product.title}</h3>
-            <p class="text-gray-600 mb-4">{product.description}</p>
-            <a href="#" class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm">
-              Ver Detalles
-            </a>
-          </div>
-        </Card>
+      {featuredProducts.map((product, index) => (
+        <div class={`card-animate card-delay-${index}`}>
+          <Card>
+            <div class="relative h-64 flex justify-center">
+              <img src={product.image || "/placeholder.svg"} alt={product.title} class="object-cover w-auto h-full" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-animate text-delay-100">
+                {product.title}
+              </h3>
+              <p class="text-gray-600 mb-4 text-animate text-delay-200">
+                {product.description}
+              </p>
+              <a href="#" class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate text-delay-300">
+                Ver Detalles
+              </a>
+            </div>
+          </Card>
+        </div>
       ))}
     </div>
 
-    <div class="text-center mt-12">
+    <div class="text-center mt-12 fade-in button-delay">
       <a href="/productos" class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 text-base">
         Ver Todos los Productos
         <span set:html={icons.chevronRight} />
@@ -66,3 +72,108 @@ const featuredProducts = [
   </div>
 </section>
 
+<style>
+  /* Estilos para las animaciones */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .card-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .card-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .text-animate {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .text-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Retrasos escalonados para las cards */
+  .card-delay-0 {
+    transition-delay: 200ms;
+  }
+  
+  .card-delay-1 {
+    transition-delay: 400ms;
+  }
+  
+  .card-delay-2 {
+    transition-delay: 600ms;
+  }
+  
+  /* Retrasos para los textos dentro de las cards */
+  .text-delay-100 {
+    transition-delay: 100ms;
+  }
+  
+  .text-delay-200 {
+    transition-delay: 200ms;
+  }
+  
+  .text-delay-300 {
+    transition-delay: 300ms;
+  }
+  
+  /* Retraso para el botón final */
+  .button-delay {
+    transition-delay: 800ms;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Opciones para el observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    // Crear el Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Hacer visibles los elementos principales cuando entran en pantalla
+          entry.target.querySelectorAll('.fade-in, .card-animate').forEach(element => {
+            element.classList.add('visible');
+          });
+          
+          // Agregar retraso para los textos dentro de las cards
+          setTimeout(() => {
+            entry.target.querySelectorAll('.text-animate').forEach(element => {
+              element.classList.add('visible');
+            });
+          }, 300);
+          
+          // Dejar de observar una vez que ya se animó
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observar la sección de productos destacados
+    const featuredSection = document.getElementById('featured-products');
+    if (featuredSection) {
+      observer.observe(featuredSection);
+    }
+  });
+</script>

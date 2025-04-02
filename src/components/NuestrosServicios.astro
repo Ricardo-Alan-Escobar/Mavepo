@@ -34,9 +34,9 @@ const services = [
 ];
 ---
 
-<section class="py-16">
+<section id="services-section" class="py-16">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
+    <div class="text-center mb-12 fade-in">
       <h2 class="text-3xl font-bold mb-4">Nuestros Servicios</h2>
       <p class="text-gray-600 max-w-2xl mx-auto">
         En Mavepo ofrecemos soluciones integrales para el mantenimiento y optimización de su maquinaria agrícola
@@ -45,16 +45,144 @@ const services = [
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {services.map((service) => (
-        <Card class="text-center p-6 hover:shadow-lg transition-shadow">
-          <div class="p-0">
-            <div class="flex justify-center mb-4 text-red-500" set:html={service.icon} />
-            <h3 class="text-xl font-bold mb-2">{service.title}</h3>
-            <p class="text-gray-600">{service.description}</p>
-          </div>
-        </Card>
+      {services.map((service, index) => (
+        <div class={`service-card-animate service-delay-${index}`}>
+          <Card class="text-center p-6 hover:shadow-lg transition-shadow">
+            <div class="p-0">
+              <div class="flex justify-center mb-4 text-red-500 icon-animate" set:html={service.icon} />
+              <h3 class="text-xl font-bold mb-2 text-animate text-delay-100">{service.title}</h3>
+              <p class="text-gray-600 text-animate text-delay-200">{service.description}</p>
+            </div>
+          </Card>
+        </div>
       ))}
     </div>
   </div>
 </section>
 
+<style>
+  /* Animación para el título y descripción principal */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación para las tarjetas de servicio */
+  .service-card-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  
+  .service-card-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación para los iconos con un pequeño efecto de escala */
+  .icon-animate {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .icon-animate.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Animación para los textos dentro de las tarjetas */
+  .text-animate {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .text-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Retrasos escalonados para las tarjetas de servicios */
+  .service-delay-0 {
+    transition-delay: 200ms;
+  }
+  
+  .service-delay-1 {
+    transition-delay: 350ms;
+  }
+  
+  .service-delay-2 {
+    transition-delay: 500ms;
+  }
+  
+  .service-delay-3 {
+    transition-delay: 650ms;
+  }
+  
+  /* Retrasos para los textos dentro de las tarjetas */
+  .text-delay-100 {
+    transition-delay: 100ms;
+  }
+  
+  .text-delay-200 {
+    transition-delay: 200ms;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Opciones para el observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    // Crear el Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Hacer visibles el título y la descripción
+          entry.target.querySelectorAll('.fade-in').forEach(element => {
+            element.classList.add('visible');
+          });
+          
+          // Mostrar las tarjetas con retraso escalonado
+          const serviceCards = entry.target.querySelectorAll('.service-card-animate');
+          serviceCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('visible');
+              
+              // Animar los elementos dentro de la tarjeta
+              setTimeout(() => {
+                card.querySelectorAll('.icon-animate').forEach(icon => {
+                  icon.classList.add('visible');
+                });
+                
+                card.querySelectorAll('.text-animate').forEach(text => {
+                  text.classList.add('visible');
+                });
+              }, 150);
+            }, 100 * index);
+          });
+          
+          // Dejar de observar una vez que ya se animó
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observar la sección de servicios
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection) {
+      observer.observe(servicesSection);
+    }
+  });
+</script>

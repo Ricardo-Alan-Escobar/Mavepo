@@ -14,34 +14,180 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-16 bg-gray-50">
+<section id="about-section" class="py-16 bg-gray-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl font-bold mb-6">Sobre Mavepo</h2>
-        <p class="text-gray-600 mb-4">
+      <div class="content-animate">
+        <h2 class="text-3xl font-bold mb-6 title-animate">Sobre Mavepo</h2>
+        <p class="text-gray-600 mb-4 text-animate text-delay-100">
           Con más de 20 años de experiencia en el sector agrícola, Mavepo se ha consolidado como distribuidor
           líder de Massey Ferguson en la región, ofreciendo soluciones integrales para el agricultor moderno.
         </p>
-        <p class="text-gray-600 mb-6">
+        <p class="text-gray-600 mb-6 text-animate text-delay-200">
           Nuestro compromiso es brindar maquinaria de alta calidad, respaldada por un servicio técnico
           especializado y un amplio stock de repuestos originales, garantizando la máxima productividad de su
           inversión.
         </p>
         {showButton && (
-          <a href={buttonLink} class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-red-500 text-white hover:bg-red-600 px-4 py-3 text-sm">
+          <a href={buttonLink} class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-red-500 text-white hover:bg-red-600 px-4 py-3 text-sm button-animate">
             {buttonText}
           </a>
         )}
       </div>
-      <div class="relative h-[400px] rounded-lg overflow-hidden">
+      <div class="relative h-[400px] rounded-lg overflow-hidden image-container-animate">
         <Image
           src={Banner}
           alt="Instalaciones de Mavepo"
-          class="object-cover w-full h-full"
+          class="object-cover w-full h-full image-animate"
         />
       </div>
     </div>
   </div>
 </section>
 
+<style>
+  /* Animación para el contenedor de texto */
+  .content-animate {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .content-animate.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Animación para el título */
+  .title-animate {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .title-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación para los párrafos */
+  .text-animate {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .text-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación para el botón */
+  .button-animate {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: 300ms;
+  }
+  
+  .button-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación para el contenedor de imagen */
+  .image-container-animate {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 200ms;
+  }
+  
+  .image-container-animate.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Animación para la imagen con efecto de escala */
+  .image-animate {
+    transform: scale(1.1);
+    transition: transform 1.5s ease-out;
+  }
+  
+  .image-animate.visible {
+    transform: scale(1);
+  }
+  
+  /* Retrasos para los textos */
+  .text-delay-100 {
+    transition-delay: 100ms;
+  }
+  
+  .text-delay-200 {
+    transition-delay: 200ms;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Opciones para el observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
+    };
+
+    // Crear el Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Activar la animación del contenedor de texto
+          const contentContainer = entry.target.querySelector('.content-animate');
+          if (contentContainer) {
+            contentContainer.classList.add('visible');
+            
+            // Animar elementos de texto con cierto retraso para un efecto secuencial
+            setTimeout(() => {
+              contentContainer.querySelector('.title-animate')?.classList.add('visible');
+              
+              // Animar párrafos de texto secuencialmente
+              const textElements = contentContainer.querySelectorAll('.text-animate');
+              textElements.forEach((textEl, index) => {
+                setTimeout(() => {
+                  textEl.classList.add('visible');
+                }, 100 * index);
+              });
+              
+              // Animar botón
+              setTimeout(() => {
+                contentContainer.querySelector('.button-animate')?.classList.add('visible');
+              }, 300);
+            }, 100);
+          }
+          
+          // Activar la animación del contenedor de imagen
+          const imageContainer = entry.target.querySelector('.image-container-animate');
+          if (imageContainer) {
+            setTimeout(() => {
+              imageContainer.classList.add('visible');
+              
+              // Animar la imagen con un efecto de escala
+              setTimeout(() => {
+                imageContainer.querySelector('.image-animate')?.classList.add('visible');
+              }, 100);
+            }, 200);
+          }
+          
+          // Dejar de observar una vez que ya se animó
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observar la sección de about
+    const aboutSection = document.getElementById('about-section');
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+  });
+</script>
