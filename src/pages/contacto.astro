@@ -1,202 +1,262 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-
-// Iconos
+// Iconos modernizados con trazos más finos
 const icons = {
-  mapPin: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-4 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>`,
-  phone: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-4 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
-  mail: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-4 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
-  clock: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-4 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
-  send: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`,
+  mapPin: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>`,
+  phone: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
+  mail: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+  clock: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+  send: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>`,
 };
 ---
 
 <Layout title="Contacto - Mavepo">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- Page Header -->
-    <div class="mb-12 text-center">
-      <h1 class="text-4xl font-bold mb-4">Contacto</h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Estamos aquí para responder a sus preguntas y brindarle el mejor servicio. 
-        No dude en ponerse en contacto con nosotros.
-      </p>
+  <main class="bg-white">
+    <!-- Hero Section -->
+    <div class="relative mb-28 bg-gradient-to-br from-gray-900 to-red-900 text-white">
+      <div class="absolute inset-0 opacity-20 bg-[url('/images/pattern.svg')]"></div>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">Contacto</h1>
+        <p class="text-xl max-w-2xl text-red-100">
+          Estamos aquí para responder a tus preguntas y brindarte el mejor servicio.
+          Contáctanos y te atenderemos a la brevedad.
+        </p>
+      </div>
     </div>
     
-    <!-- Contact Info Banner -->
-    <div class=" p-8 mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="flex items-start bg-gray-50 p-4 rounded-lg shadow-md">
-          <span set:html={icons.mapPin} />
-          <div>
-            <h3 class="font-bold text-lg mb-2">Dirección</h3>
-            <p class="text-gray-600">AV. Salvador Nava Martinez #217</p>
-            <p class="text-gray-600">Capricornio 78399 SLP, SLP</p>
+    <!-- Contact Info Cards -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 -mt-12 sm:-mt-16 mb-12 sm:mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="group bg-white shadow-lg hover:shadow-xl rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 border-t-4 border-red-500">
+          <div class="flex items-start space-x-4">
+            <div class="p-3 bg-red-50 rounded-lg group-hover:bg-red-100 transition-colors duration-300">
+              <span set:html={icons.mapPin} />
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 mb-1">Dirección</h3>
+              <p class="text-gray-600">AV. Salvador Nava Martinez #217</p>
+              <p class="text-gray-600">Capricornio 78399 SLP, SLP</p>
+            </div>
           </div>
         </div>
         
-        <div class="flex items-start bg-gray-50 p-4 rounded-lg shadow-md">
-          <span set:html={icons.phone} />
-          <div>
-            <h3 class="font-bold text-lg mb-2">Teléfono</h3>
-            <p class="text-gray-600">+123 456 7890</p>
-            <p class="text-gray-600">+123 456 7891</p>
+        <div class="group bg-white shadow-lg hover:shadow-xl rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 border-t-4 border-red-500">
+          <div class="flex items-start space-x-4">
+            <div class="p-3 bg-red-50 rounded-lg group-hover:bg-red-100 transition-colors duration-300">
+              <span set:html={icons.phone} />
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 mb-1">Teléfono</h3>
+              <p class="text-gray-600">+123 456 7890</p>
+              <p class="text-gray-600">+123 456 7891</p>
+            </div>
           </div>
         </div>
         
-        <div class="flex items-start bg-gray-50 p-4 rounded-lg shadow-md">
-          <span set:html={icons.mail} />
-          <div>
-            <h3 class="font-bold text-lg mb-2">Email</h3>
-            <p class="text-gray-600">info@mavepo.com</p>
-            <p class="text-gray-600">ventas@mavepo.com</p>
+        <div class="group bg-white shadow-lg hover:shadow-xl rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 border-t-4 border-red-500">
+          <div class="flex items-start space-x-4">
+            <div class="p-3 bg-red-50 rounded-lg group-hover:bg-red-100 transition-colors duration-300">
+              <span set:html={icons.mail} />
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 mb-1">Email</h3>
+              <a href="mailto:info@mavepo.com" class="text-gray-600 hover:text-red-500 transition-colors">info@mavepo.com</a>
+              <p class="text-gray-600">ventas@mavepo.com</p>
+            </div>
           </div>
         </div>
         
-        <div class="flex items-start bg-gray-50 p-4 rounded-lg shadow-md">
-          <span set:html={icons.clock} />
-          <div>
-            <h3 class="font-bold text-lg mb-2">Horario</h3>
-            <p class="text-gray-600">Lun - Vie: 8:00 - 18:00</p>
-            <p class="text-gray-600">Sáb: 9:00 - 14:00</p>
+        <div class="group bg-white shadow-lg hover:shadow-xl rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 border-t-4 border-red-500">
+          <div class="flex items-start space-x-4">
+            <div class="p-3 bg-red-50 rounded-lg group-hover:bg-red-100 transition-colors duration-300">
+              <span set:html={icons.clock} />
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 mb-1">Horario</h3>
+              <p class="text-gray-600">Lun - Vie: 8:00 - 18:00</p>
+              <p class="text-gray-600">Sáb: 9:00 - 14:00</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
     
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <!-- Contact Form -->
-      <div>
-        <h2 class="text-2xl font-bold mb-6">Envíenos un mensaje</h2>
-        <form id="contact-form" class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label for="nombre" class="block font-medium text-gray-700">Nombre completo</label>
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+      <div class="flex flex-col lg:flex-row gap-12">
+        <!-- Contact Form -->
+        <div class="lg:w-1/2">
+          <div class="mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 inline-block relative">
+              Envíanos un mensaje
+              <span class="absolute -bottom-1 left-0 w-20 h-1 bg-red-500"></span>
+            </h2>
+          </div>
+          
+          <form id="contact-form" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="nombre" class="block font-medium text-gray-700 mb-1">Nombre completo</label>
+                <input 
+                  id="nombre" 
+                  name="nombre" 
+                  type="text"
+                  required 
+                  class="w-full px-4 py-3 border-0 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
+                />
+              </div>
+              <div>
+                <label for="email" class="block font-medium text-gray-700 mb-1">Correo electrónico</label>
+                <input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  required 
+                  class="w-full px-4 py-3 border-0 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="telefono" class="block font-medium text-gray-700 mb-1">Teléfono</label>
               <input 
-                id="nombre" 
-                name="nombre" 
-                type="text"
-                required 
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                id="telefono" 
+                name="telefono" 
+                type="tel"
+                class="w-full px-4 py-3 border-0 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
               />
             </div>
-            <div class="space-y-2">
-              <label for="email" class="block font-medium text-gray-700">Correo electrónico</label>
-              <input 
-                id="email" 
-                name="email" 
-                type="email" 
+            
+            <div>
+              <label class="block font-medium text-gray-700 mb-2">Tipo de consulta</label>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-lg border border-gray-200 p-3 flex items-center space-x-3 hover:border-red-500 cursor-pointer transition">
+                  <input type="radio" id="informacion" name="tipoConsulta" value="informacion" checked class="text-red-500 focus:ring-red-500" />
+                  <label for="informacion" class="cursor-pointer">Información general</label>
+                </div>
+                <div class="rounded-lg border border-gray-200 p-3 flex items-center space-x-3 hover:border-red-500 cursor-pointer transition">
+                  <input type="radio" id="ventas" name="tipoConsulta" value="ventas" class="text-red-500 focus:ring-red-500" />
+                  <label for="ventas" class="cursor-pointer">Ventas</label>
+                </div>
+                <div class="rounded-lg border border-gray-200 p-3 flex items-center space-x-3 hover:border-red-500 cursor-pointer transition">
+                  <input type="radio" id="servicio" name="tipoConsulta" value="servicio" class="text-red-500 focus:ring-red-500" />
+                  <label for="servicio" class="cursor-pointer">Servicio técnico</label>
+                </div>
+                <div class="rounded-lg border border-gray-200 p-3 flex items-center space-x-3 hover:border-red-500 cursor-pointer transition">
+                  <input type="radio" id="repuestos" name="tipoConsulta" value="repuestos" class="text-red-500 focus:ring-red-500" />
+                  <label for="repuestos" class="cursor-pointer">Repuestos</label>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <label for="producto" class="block font-medium text-gray-700 mb-1">Producto de interés</label>
+              <select 
+                id="producto" 
+                name="producto"
+                class="w-full px-4 py-3 border-0 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
+              >
+                <option value="" selected disabled>Seleccione un producto</option>
+                <option value="tractores">Tractores</option>
+                <option value="cosechadoras">Cosechadoras</option>
+                <option value="implementos">Implementos</option>
+                <option value="repuestos">Repuestos</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="mensaje" class="block font-medium text-gray-700 mb-1">Mensaje</label>
+              <textarea 
+                id="mensaje" 
+                name="mensaje" 
+                rows="4" 
                 required 
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-              />
+                class="w-full px-4 py-3 border-0 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
+                placeholder="¿En qué podemos ayudarte?"
+              ></textarea>
             </div>
-          </div>
-          
-          <div class="space-y-2">
-            <label for="telefono" class="block font-medium text-gray-700">Teléfono</label>
-            <input 
-              id="telefono" 
-              name="telefono" 
-              type="tel"
-              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-          
-          <div class="space-y-2">
-            <label class="block font-medium text-gray-700">Tipo de consulta</label>
-            <div class="space-y-2">
-              <div class="flex items-center space-x-2">
-                <input type="radio" id="informacion" name="tipoConsulta" value="informacion" checked class="text-primary focus:ring-primary" />
-                <label for="informacion">Información general</label>
-              </div>
-              <div class="flex items-center space-x-2">
-                <input type="radio" id="ventas" name="tipoConsulta" value="ventas" class="text-primary focus:ring-primary" />
-                <label for="ventas">Ventas</label>
-              </div>
-              <div class="flex items-center space-x-2">
-                <input type="radio" id="servicio" name="tipoConsulta" value="servicio" class="text-primary focus:ring-primary" />
-                <label for="servicio">Servicio técnico</label>
-              </div>
-              <div class="flex items-center space-x-2">
-                <input type="radio" id="repuestos" name="tipoConsulta" value="repuestos" class="text-primary focus:ring-primary" />
-                <label for="repuestos">Repuestos</label>
-              </div>
-            </div>
-          </div>
-          
-          <div class="space-y-2">
-            <label for="producto" class="block font-medium text-gray-700">Producto de interés</label>
-            <select 
-              id="producto" 
-              name="producto"
-              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+            
+            <button 
+              type="submit" 
+              class="inline-flex items-center justify-center bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 group"
             >
-              <option value="" selected disabled>Seleccione un producto</option>
-              <option value="tractores">Tractores</option>
-              <option value="cosechadoras">Cosechadoras</option>
-              <option value="implementos">Implementos</option>
-              <option value="repuestos">Repuestos</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
-          
-          <div class="space-y-2">
-            <label for="mensaje" class="block font-medium text-gray-700">Mensaje</label>
-            <textarea 
-              id="mensaje" 
-              name="mensaje" 
-              rows="5" 
-              required 
-              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-            ></textarea>
-          </div>
-          
-          <button 
-            type="submit" 
-            class="inline-flex items-center justify-center cursor-pointer rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 text-sm"
-          >
-            <span set:html={icons.send} />
-            Enviar mensaje
-          </button>
-        </form>
-      </div>
-      
-      <!-- Map -->
-      <div>
-        <h2 class="text-2xl font-bold mb-6">Nuestra ubicación</h2>
-        <div class="aspect-square md:aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-6">
-          <!-- Aquí iría un mapa real -->
-          <iframe class="w-full rounded-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.4929154447836!2d-100.95868302413677!3d22.145301548494686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842aa2225d703503%3A0xcea54f60895abea2!2sGRUPO%20MAVEPO%2FMAVESA%2C%20S.L.P.!5e0!3m2!1ses!2smx!4v1743436914949!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <span class="mr-2 group-hover:translate-x-1 transition-transform">Enviar mensaje</span>
+              <span set:html={icons.send} class="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </form>
         </div>
         
-        <div class="bg-gray-50 rounded-lg p-6">
-          <h3 class="font-bold text-lg mb-4">Horario de atención</h3>
-          <div class="space-y-3">
-            <div class="flex justify-between">
-              <span class="font-medium">Lunes a Viernes</span>
-              <span>8:00 - 18:00</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="font-medium">Sábados</span>
-              <span>9:00 - 14:00</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="font-medium">Domingos y Feriados</span>
-              <span>Cerrado</span>
-            </div>
+        <!-- Map Section -->
+        <div class="lg:w-1/2">
+          <div class="mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 inline-block relative">
+              Nuestra ubicación
+              <span class="absolute -bottom-1 left-0 w-20 h-1 bg-red-500"></span>
+            </h2>
           </div>
           
-          <div class="mt-6 pt-6 border-t">
-            <h3 class="font-bold text-lg mb-2">Servicio técnico de urgencia</h3>
-            <p class="text-gray-600">
-              Contamos con servicio técnico de urgencia para nuestros clientes. 
-              Comuníquese al +123 456 7899.
-            </p>
+          <div class="overflow-hidden rounded-xl shadow-lg mb-8">
+            <iframe 
+              class="w-full h-96" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.4929154447836!2d-100.95868302413677!3d22.145301548494686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842aa2225d703503%3A0xcea54f60895abea2!2sGRUPO%20MAVEPO%2FMAVESA%2C%20S.L.P.!5e0!3m2!1ses!2smx!4v1743436914949!5m2!1ses!2smx" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          
+          <div class="bg-gradient-to-br from-gray-50 to-red-50 rounded-xl p-8">
+            <h3 class="font-bold text-xl mb-6 text-gray-900">Horario de atención</h3>
+            
+            <div class="grid gap-4">
+              <div class="flex justify-between items-center pb-2 border-b border-gray-200">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <span class="font-medium">Lunes a Viernes</span>
+                </div>
+                <span class="font-medium">8:00 - 18:00</span>
+              </div>
+              
+              <div class="flex justify-between items-center pb-2 border-b border-gray-200">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <span class="font-medium">Sábados</span>
+                </div>
+                <span class="font-medium">9:00 - 14:00</span>
+              </div>
+              
+              <div class="flex justify-between items-center pb-2 border-b border-gray-200">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
+                  <span class="font-medium">Domingos y Feriados</span>
+                </div>
+                <span class="font-medium">Cerrado</span>
+              </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <div class="flex items-start space-x-4">
+                <div class="p-3 bg-red-100 bg-opacity-50 rounded-lg">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg text-gray-900 mb-2">Servicio técnico de urgencia</h3>
+                  <p class="text-gray-600">
+                    Contamos con servicio técnico de urgencia para nuestros clientes. 
+                    Comunícate al <span class="text-red-500 font-medium">+123 456 7899</span>.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </Layout>
-
-
