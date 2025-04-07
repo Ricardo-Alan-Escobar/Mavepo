@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import RP from '../assets/Servicios/RP.jpg';
+import ST from '../assets/Servicios/ST.jpeg';
+import OF from '../assets/2.png';
+import Banner from '../assets/bannerservises.jpg';
 ---
 
 <Layout title='Mavep - Servicios'>
@@ -10,20 +14,16 @@ import { Image } from 'astro:assets';
       <div class="text-center mb-8">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Nuestros Servicios</h1>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          En Mavep nos comprometemos a brindar soluciones completas para sus necesidades agrícolas.
+          En Mavepo nos comprometemos a brindar soluciones completas para sus necesidades agrícolas.
         </p>
       </div>
       <div class="relative h-64 md:h-96 rounded-xl overflow-hidden">
         <img 
-          src="/placeholder.svg?height=600&width=1200" 
+          src={Banner.src}
           alt="Tractores Mavep en campo" 
           class="w-full h-full object-cover"
         />
-        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-          <h2 class="text-white text-3xl md:text-4xl font-bold px-4 text-center">
-            Soluciones completas para su maquinaria agrícola
-          </h2>
-        </div>
+      
       </div>
     </section>
 
@@ -33,13 +33,11 @@ import { Image } from 'astro:assets';
       <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
         <div class="h-48 bg-gray-200 relative">
           <img 
-            src="/placeholder.svg?height=400&width=600" 
+            src={ST.src}
             alt="Servicio Técnico" 
             class="w-full h-full object-cover"
           />
-          <div class="absolute inset-0 bg-blue-600 bg-opacity-70 flex items-center justify-center">
-            <span class="text-white text-2xl font-bold">Servicio Técnico</span>
-          </div>
+         
         </div>
         <div class="p-6">
           <p class="text-gray-700 mb-4">
@@ -65,9 +63,9 @@ import { Image } from 'astro:assets';
               Diagnóstico computarizado
             </li>
           </ul>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full transition-colors">
-            Solicitar servicio
-          </button>
+          <a href="#" class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate text-delay-300">
+            Solicitar Servicio
+          </a>
         </div>
       </div>
 
@@ -75,13 +73,11 @@ import { Image } from 'astro:assets';
       <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
         <div class="h-48 bg-gray-200 relative">
           <img 
-            src="/placeholder.svg?height=400&width=600" 
+            src={RP.src}
             alt="Repuestos" 
             class="w-full h-full object-cover"
           />
-          <div class="absolute inset-0 bg-green-600 bg-opacity-70 flex items-center justify-center">
-            <span class="text-white text-2xl font-bold">Repuestos</span>
-          </div>
+         
         </div>
         <div class="p-6">
           <p class="text-gray-700 mb-4">
@@ -107,9 +103,9 @@ import { Image } from 'astro:assets';
               Asesoría técnica
             </li>
           </ul>
-          <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg w-full transition-colors">
-            Catálogo de repuestos
-          </button>
+          <a href="#" class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate text-delay-300">
+            Ver Disponiilidad
+          </a>
         </div>
       </div>
 
@@ -117,13 +113,11 @@ import { Image } from 'astro:assets';
       <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
         <div class="h-48 bg-gray-200 relative">
           <img 
-            src="/placeholder.svg?height=400&width=600" 
+            src={OF.src}
             alt="Financiamiento" 
             class="w-full h-full object-cover"
           />
-          <div class="absolute inset-0 bg-amber-600 bg-opacity-70 flex items-center justify-center">
-            <span class="text-white text-2xl font-bold">Financiamiento</span>
-          </div>
+          
         </div>
         <div class="p-6">
           <p class="text-gray-700 mb-4">
@@ -149,9 +143,9 @@ import { Image } from 'astro:assets';
               Aprobación rápida
             </li>
           </ul>
-          <button class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg w-full transition-colors">
-            Solicitar financiamiento
-          </button>
+          <a href="#" class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate text-delay-300">
+           Solicitar Financiamiento
+          </a>
         </div>
       </div>
     </section>
@@ -176,7 +170,6 @@ import { Image } from 'astro:assets';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="bg-white p-6 rounded-xl shadow-md">
           <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
             <div>
               <h3 class="font-bold">Juan Pérez</h3>
               <p class="text-gray-600 text-sm">Agricultor</p>
@@ -205,7 +198,7 @@ import { Image } from 'astro:assets';
         </div>
         <div class="bg-white p-6 rounded-xl shadow-md">
           <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+            
             <div>
               <h3 class="font-bold">María González</h3>
               <p class="text-gray-600 text-sm">Empresaria Agrícola</p>
@@ -234,7 +227,6 @@ import { Image } from 'astro:assets';
         </div>
         <div class="bg-white p-6 rounded-xl shadow-md">
           <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
             <div>
               <h3 class="font-bold">Carlos Rodríguez</h3>
               <p class="text-gray-600 text-sm">Cooperativa Agrícola</p>
