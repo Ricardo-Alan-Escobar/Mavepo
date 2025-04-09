@@ -14,8 +14,6 @@ import t10 from '../assets/Tractores/mf10.png'
 import t11 from '../assets/Tractores/mf11.png'
 import t12 from '../assets/Tractores/mf12.png'
 
-
-
 // Datos de productos
 const categories = [
   { id: "tractores", name: "Tractores" },
@@ -31,6 +29,10 @@ const products = {
       description: "Tractor de alta potencia con tecnología avanzada para máxima eficiencia",
       image: t1.src,
       features: ["19-52 HP", "Motor AGCO Power 4.4L", "Transmisión 12x12", "Sistema hidráulico 57 L/min", "Levante de 3.300 kg"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-mf1520.pdf" },
+        { title: "Manual de Usuario", url: "https://masseyferguson.mx/manuals/manual-mf1520.pdf" }
+      ]
     },
     {
       id: 2,
@@ -38,76 +40,92 @@ const products = {
       description: "Versatilidad y rendimiento para todo tipo de tareas agrícolas",
       image: t2.src,
       features: ["35-105 HP", "Motor AGCO Power 3.3L", "Transmisión 12x4", "Sistema hidráulico 65 L/min", "Cabina con aire acondicionado"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-mf2600.pdf" },
+        { title: "Catálogo", url: "https://masseyferguson.mx/dataSheets/fichatecnica-mf2600.pdf" }
+      ]
     },
     {
       id: 3,
       name: "MF 2600 LR",
       description: "Compacto y potente, ideal para explotaciones medianas",
       image: t3.src,
-      features: ["49-74 HP", "Motor AGCO Power 2.9L", "Transmisión 8x8", "Dirección hidrostática", "Elevador de 2.500 kg"],
+      features: ["43-78 HP", "Motor AGCO Power 2.9L", "Transmisión 8x8", "Dirección hidrostática", "Elevador de 2.500 kg"],
+      links: []
     },
     {
       id: 4,
       name: "MF 4700",
       description: "Fiabilidad y simplicidad para operaciones diarias en el campo",
       image: t4.src,
-      features: ["82-100 HP", "Motor AGCO Power 3.3L", "Transmisión 12x12", "Cabina con aire acondicionado", "Bomba hidráulica de 65 L/min"],
+      features: ["75-85 HP", "Motor AGCO Power 3.3L", "Transmisión 12x12", "Cabina con aire acondicionado", "Bomba hidráulica de 65 L/min"],
+      links: [
+        { title: "Ficha Técnica", url: "#" }
+      ]
     },
     {
       id: 5,
       name: "MF 2600 MR",
       description: "Eficiencia comprobada para agricultura de precisión con consumo optimizado",
       image: t5.src,
-      features: ["60-74 HP", "Motor AGCO Power 2.9L", "Transmisión 8x8", "Levante hidráulico de 2.200 kg", "Doble tracción"],
+      features: ["85 HP", "Motor AGCO Power 2.9L", "Transmisión 8x8", "Levante hidráulico de 2.200 kg", "Doble tracción"],
+      links: []
     },
     {
       id: 6,
       name: "MF 2600 E",
       description: "Económico y robusto, perfecto para pequeñas y medianas explotaciones",
       image: t6.src,
-      features: ["36-50 HP", "Motor AGCO Power 2.5L", "Transmisión 8x2", "Toma de fuerza 540 rpm", "Sistema hidráulico de 36 L/min"],
+      features: ["85-105 HP", "Motor AGCO Power 2.5L", "Transmisión 8x2", "Toma de fuerza 540 rpm", "Sistema hidráulico de 36 L/min"],
+      links: []
     },
     {
       id: 7,
       name: "MF 2600 HR",
       description: "Diseño compacto para trabajos en espacios reducidos y cultivos especializados",
       image: t7.src,
-      features: ["55-75 HP", "Motor AGCO Power 2.9L", "Transmisión 9x3", "Radio de giro reducido", "Contrapesos frontales"],
+      features: ["110-130 HP", "Motor AGCO Power 2.9L", "Transmisión 9x3", "Radio de giro reducido", "Contrapesos frontales"],
+      links: []
     },
     {
       id: 8,
       name: "MF 6700",
       description: "Equilibrio perfecto entre potencia y maniobrabilidad para tareas diversas",
       image: t8.src,
-      features: ["120-155 HP", "Motor AGCO Power 4.9L", "Transmisión Dyna-4", "Sistema hidráulico de 100 L/min", "Cabina panorámica"],
+      features: ["112-132 HP", "Motor AGCO Power 4.9L", "Transmisión Dyna-4", "Sistema hidráulico de 100 L/min", "Cabina panorámica"],
+      links: []
     },
     {
       id: 9,
       name: "MF 7600",
       description: "Tecnología de punta con sistemas integrados para agricultura de precisión",
       image: t9.src,
-      features: ["150-185 HP", "Motor AGCO Power 6.6L", "Transmisión Dyna-6", "Sistema de gestión en cabeceras", "ISOBUS compatible"],
+      features: ["150-175 HP", "Motor AGCO Power 6.6L", "Transmisión Dyna-6", "Sistema de gestión en cabeceras", "ISOBUS compatible"],
+      links: []
     },
     {
       id: 10,
       name: "MF 7700 S",
       description: "Rendimiento superior con máxima comodidad para largas jornadas de trabajo",
       image: t10.src,
-      features: ["165-255 HP", "Motor AGCO Power 6.6L", "Transmisión Dyna-6 ECO", "Suspensión de cabina activa", "Levante de 9.950 kg"],
+      features: ["200-260 HP", "Motor AGCO Power 6.6L", "Transmisión Dyna-6 ECO", "Suspensión de cabina activa", "Levante de 9.950 kg"],
+      links: []
     },
     {
       id: 11,
       name: "MF 8700", 
       description: "Potencia inigualable para las labores más exigentes con eficiencia de combustible",
       image: t11.src,
-      features: ["270-340 HP", "Motor AGCO Power 8.4L", "Transmisión Dyna-VT", "Radar de velocidad", "Sistema hidráulico de 205 L/min"],
+      features: ["320-370 HP", "Motor AGCO Power 8.4L", "Transmisión Dyna-VT", "Radar de velocidad", "Sistema hidráulico de 205 L/min"],
+      links: []
     },
     {
       id: 12,
       name: "MF 8700 S",
       description: "La combinación definitiva de potencia, tecnología y confort para grandes extensiones",
       image: t12.src,
-      features: ["290-400 HP", "Motor AGCO Power 8.4L", "Transmisión Dyna-VT con gestión automática", "Sistema de telemetría AgCommand", "Levante de 12.000 kg"],
+      features: ["320-370 HP", "Motor AGCO Power 8.4L", "Transmisión Dyna-VT con gestión automática", "Sistema de telemetría AgCommand", "Levante de 12.000 kg"],
+      links: []
     },
   ],
   cosechadoras: [
@@ -117,6 +135,7 @@ const products = {
       description: "La cosechadora más avanzada con tecnología de vanguardia",
       image: "/placeholder.svg?height=300&width=400",
       features: ["647 HP", "Rotor Dual", "IDEALharvest™"],
+      links: []
     },
     {
       id: 2,
@@ -124,6 +143,7 @@ const products = {
       description: "Máxima productividad y calidad de grano excepcional",
       image: "/placeholder.svg?height=300&width=400",
       features: ["538 HP", "Rotor Dual", "IDEALbalance™"],
+      links: []
     },
     {
       id: 3,
@@ -131,6 +151,7 @@ const products = {
       description: "Eficiencia y rendimiento para explotaciones medianas",
       image: "/placeholder.svg?height=300&width=400",
       features: ["451 HP", "Rotor Simple", "TrakRide™"],
+      links: []
     },
   ],
   implementos: [
@@ -140,6 +161,7 @@ const products = {
       description: "Precisión y eficiencia para una siembra perfecta",
       image: "/placeholder.svg?height=300&width=400",
       features: ["Múltiples configuraciones", "Sistema de dosificación preciso", "Monitoreo electrónico"],
+      links: []
     },
     {
       id: 2,
@@ -147,6 +169,7 @@ const products = {
       description: "Aplicación uniforme y precisa de productos fitosanitarios",
       image: "/placeholder.svg?height=300&width=400",
       features: ["Barra de 36m", "Tanque de 6000L", "Control de secciones"],
+      links: []
     },
     {
       id: 3,
@@ -154,6 +177,7 @@ const products = {
       description: "Pacas de alta densidad y calidad superior",
       image: "/placeholder.svg?height=300&width=400",
       features: ["Pacas rectangulares", "Sistema de atado doble", "Monitor C1000"],
+      links: []
     },
   ],
 };
@@ -205,7 +229,19 @@ const products = {
                       ))}
                     </ul>
                   </div>
-                
+                  {product.links && product.links.length > 0 && (
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      {product.links.map((link) => (
+                        link.url && link.url !== "#" ? (
+                          <a href={link.url} target="_blank" rel="noopener noreferrer">
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+                              {link.title}
+                            </button>
+                          </a>
+                        ) : null
+                      ))}
+                    </div>
+                  )}
                 </div>
               </Card>
             ))}
@@ -232,7 +268,7 @@ const products = {
 </Layout>
 
 <script>
-  // Tabs functionality
+  
   document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('[data-tab]');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -266,4 +302,3 @@ const products = {
     });
   });
 </script>
-
