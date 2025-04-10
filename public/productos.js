@@ -31,36 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Dropdown functionality
-    const dropdownButtons = document.querySelectorAll('[data-dropdown]');
-    
-    // Cerrar todos los dropdowns al hacer clic fuera
-    document.addEventListener('click', (event) => {
-      const dropdowns = document.querySelectorAll('[id^="dropdown-"]');
-      dropdowns.forEach(dropdown => {
-        if (!dropdown.parentElement.contains(event.target)) {
-          dropdown.classList.add('hidden');
-        }
-      });
-    });
-
-    // Toggle dropdown al hacer clic en el botón
-    dropdownButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const dropdownId = button.getAttribute('data-dropdown');
-        const dropdown = document.getElementById(dropdownId);
-        
-        // Cerrar todos los demás dropdowns
-        const allDropdowns = document.querySelectorAll('[id^="dropdown-"]');
-        allDropdowns.forEach(d => {
-          if (d.id !== dropdownId) {
-            d.classList.add('hidden');
-          }
-        });
-        
-        // Toggle el dropdown actual
-        dropdown.classList.toggle('hidden');
-      });
+    // Reset select elements after navigation
+    const selects = document.querySelectorAll('select[id^="doc-select-"]');
+    selects.forEach(select => {
+      select.selectedIndex = 0;
     });
   });
