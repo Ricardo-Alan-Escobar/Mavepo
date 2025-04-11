@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import bannerImage from '../assets/bannerfaq.jpeg';
 
 // Categorías de preguntas frecuentes
 const categories = [
@@ -106,31 +107,37 @@ const faqs = {
 <Layout title="Preguntas Frecuentes - Mavepo">
   
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Page Header -->
-    <div class="mb-12 bg-gradient-to-r from-red-500 to-red-700 p-10 w-full text-white text-center rounded-b-full">
-      <h1 class="text-4xl font-bold mb-4">Preguntas Frecuentes</h1>
-      <p class="text-xl text-white max-w-3xl mx-auto">
-        Encuentre respuestas a las preguntas más comunes sobre nuestros productos, 
-        servicios y procesos
-      </p>
-    
-    
    
-    <!-- Search -->
-    <div class="max-w-2xl mt-10 mx-auto">
-      <div class="relative">
-        <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 transform text-gray-400 -translate-y-1/2 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input 
-          type="search" 
-          id="faq-search"
-          placeholder="Buscar preguntas frecuentes..." 
-          class="w-full pl-10 shadow-2xl pr-4 py-3 bg-white text-gray-700 placeholder:text-gray-400 border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-        />
+    <!-- Page Header -->
+    <div class="mb-12 p-10 w-full text-white text-center rounded-b-lg bg-cover bg-center bg-no-repeat relative" style={`background-image: url(${bannerImage.src});`}>
+      <!-- Overlay negro con opacidad -->
+      <div class="absolute inset-0 bg-black opacity-50 rounded-b-lg"></div>
+      
+      <!-- Contenido -->
+      <div class="relative z-10">
+        <div class="border border-white inline p-2 px-3 rounded-full text-sm text-red-200 font-bold">¿Qué necesita saber?</div>
+        <h1 class="text-4xl font-bold mb-4 mt-6">Preguntas Frecuentes</h1>
+        <p class="text-xl text-white max-w-3xl mx-auto">
+          Encuentre respuestas a las preguntas más comunes sobre nuestros productos, 
+          servicios y procesos
+        </p>
+      
+        <!-- Search -->
+        <div class="max-w-2xl mt-10 mx-auto">
+          <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 transform text-gray-400 -translate-y-1/2 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="search" 
+              id="faq-search"
+              placeholder="Buscar preguntas frecuentes..." 
+              class="w-full pl-10 shadow-2xl pr-4 py-3 bg-white text-gray-700 placeholder:text-gray-400 border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+        </div>
       </div>
-    </div>
     </div>
     <!-- Categories -->
     <div class="flex flex-wrap justify-center gap-3 mb-8">
@@ -195,7 +202,7 @@ const faqs = {
       <div class="max-w-3xl mx-auto mt-16 bg-gray-50 rounded-lg p-8 text-center">
         <h2 class="text-2xl font-bold mb-4">¿No encontró lo que buscaba?</h2>
         <p class="text-gray-600 mb-6">
-          Si tiene alguna pregunta adicional, no dude en contactarnos. 
+          Si tiene alguna pregunta adicional, no dude en contactarnos.  
           Nuestro equipo estará encantado de ayudarle.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
