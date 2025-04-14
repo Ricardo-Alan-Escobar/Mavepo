@@ -13,6 +13,10 @@ import t9 from '../assets/Tractores/mf9.png';
 import t10 from '../assets/Tractores/mf10.png';
 import t11 from '../assets/Tractores/mf11.png';
 import t12 from '../assets/Tractores/mf12.png';
+import Sembradoras from '../assets/Implementos/sembradoras.png';
+import Pulverizadoras from '../assets/Implementos/pulverizadora.png';
+import Rastra from '../assets/Implementos/rastra.png';
+import Cosechadoras from '../assets/Implementos/cosechadora.png';
 
 const categories = [
   { id: "tractores", name: "Tractores" },
@@ -157,53 +161,46 @@ const products = {
   cosechadoras: [
     {
       id: 1,
-      name: "IDEAL 9",
+      name: "cosechadora MF6690",
       description: "La cosechadora más avanzada con tecnología de vanguardia",
-      image: "/placeholder.svg?height=300&width=400",
+      image: Cosechadoras.src,
       features: ["647 HP", "Rotor Dual", "IDEALharvest™"],
-      links: []
+      links: [
+      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-mf6690.pdf" }
+      ]
     },
-    {
-      id: 2,
-      name: "IDEAL 8",
-      description: "Máxima productividad y calidad de grano excepcional",
-      image: "/placeholder.svg?height=300&width=400",
-      features: ["538 HP", "Rotor Dual", "IDEALbalance™"],
-      links: []
-    },
-    {
-      id: 3,
-      name: "IDEAL 7",
-      description: "Eficiencia y rendimiento para explotaciones medianas",
-      image: "/placeholder.svg?height=300&width=400",
-      features: ["451 HP", "Rotor Simple", "TrakRide™"],
-      links: []
-    },
+    
   ],
   implementos: [
     {
       id: 1,
-      name: "Sembradoras MF 9000",
+      name: "Sembradoras",
       description: "Precisión y eficiencia para una siembra perfecta",
-      image: "/placeholder.svg?height=300&width=400",
+      image: Sembradoras.src,
       features: ["Múltiples configuraciones", "Sistema de dosificación preciso", "Monitoreo electrónico"],
-      links: []
+      links: [
+      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-sembradoras.pdf" }
+      ]
     },
     {
       id: 2,
-      name: "Pulverizadoras MF 9300",
+      name: "Pulverizadoras MF 530R",
       description: "Aplicación uniforme y precisa de productos fitosanitarios",
-      image: "/placeholder.svg?height=300&width=400",
+      image: Pulverizadoras.src,
       features: ["Barra de 36m", "Tanque de 6000L", "Control de secciones"],
-      links: []
+      links: [
+      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/DIGITAL-24-FICHATECNICA-MF530R.pdf" }
+      ]
     },
     {
       id: 3,
-      name: "Empacadoras MF 2200",
+      name: "RASTRA INTEGRAL",
       description: "Pacas de alta densidad y calidad superior",
-      image: "/placeholder.svg?height=300&width=400",
+      image: Rastra.src,
       features: ["Pacas rectangulares", "Sistema de atado doble", "Monitor C1000"],
-      links: []
+      links: [
+      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-rastraintegral.pdf" }
+      ]
     },
   ],
 };
