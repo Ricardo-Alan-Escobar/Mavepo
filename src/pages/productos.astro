@@ -17,6 +17,7 @@ import Sembradoras from '../assets/Implementos/sembradoras.png';
 import Pulverizadoras from '../assets/Implementos/pulverizadora.png';
 import Rastra from '../assets/Implementos/rastra.png';
 import Cosechadoras from '../assets/Implementos/cosechadora.png';
+import bannerImage from '../assets/banner-profuctos.jpeg';
 
 const categories = [
   { id: "tractores", name: "Tractores" },
@@ -192,6 +193,18 @@ const products = {
       { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/DIGITAL-24-FICHATECNICA-MF530R.pdf" }
       ]
     },
+    
+    {
+      id: 3,
+      name: "RASTRA INTEGRAL",
+      description: "Pacas de alta densidad y calidad superior",
+      image: Rastra.src,
+      features: ["Pacas rectangulares", "Sistema de atado doble", "Monitor C1000"],
+      links: [
+      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-rastraintegral.pdf" }
+      ]
+    },
+
     {
       id: 3,
       name: "RASTRA INTEGRAL",
@@ -203,35 +216,45 @@ const products = {
       ]
     },
   ],
+  
+
+  
 };
 ---
   
 
 <script type="module" src="/header.js"></script>
 <Layout title="Productos - Mavepo">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class=" px-4 sm:px-6 lg:px-8 pb-12">
     <!-- Page Header -->
-    <div class="mb-12 text-center">
-      <div class="bg-red-200 inline p-2 px-3 rounded-full text-sm text-red-800 font-bold">Maquinaria Agrícola Premium</div>
-      <h1 class="text-4xl font-bold mb-4 mt-6 text-red-700">Nuestros Productos</h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Descubra la amplia gama de maquinaria agrícola Massey Ferguson, diseñada para maximizar su productividad y
+    <div class="mb-12 p-10 py-20 w-full text-white text-center rounded-b-lg bg-cover bg-center bg-no-repeat relative" style={`background-image: url(${bannerImage.src});`}>
+      <!-- Overlay negro con opacidad -->
+      <div class="absolute inset-0  rounded-b-lg"></div>
+      
+      <!-- Contenido -->
+      <div class="relative z-10">
+        <div class="border border-white inline p-2 px-3 rounded-full text-sm text-red-200 font-bold">Maquinaria Agrícola Premium</div>
+        <h1 class="text-4xl font-bold mb-4 mt-6">Nuestros Productos</h1>
+        <p class="text-xl text-white max-w-3xl mx-auto">
+          Descubra la amplia gama de maquinaria agrícola Massey Ferguson, diseñada para maximizar su productividad y
         eficiencia en el campo
-      </p>
+        </p>
+      </div>
     </div>
 
     <!-- Product Categories Tabs -->
     <div class="mb-12">
-      <div class="flex flex-wrap justify-center mb-8">
+      <div class="flex bg-red-200 flex-wrap justify-center p-1 mb-8">
         {categories.map((category, index) => (
           <button 
-            class={`px-4 py-2 mx-1 mb-2 rounded-md font-medium ${index === 0 ? 'bg-red-100 text-gray-700 cursor-pointer' : 'cursor-pointer bg-red-100 text-gray-700 hover:bg-red-200'}`}
+            class={`px-4 py-2 mx-1 rounded-md font-medium ${index === 0 ? 'bg-red-100 text-gray-700 cursor-pointer' : 'cursor-pointer bg-red-100 text-gray-700 hover:bg-red-200'}`}
             data-tab={category.id}
           >
             {category.name}
           </button>
         ))}
       </div>
+
 
       {Object.entries(products).map(([category, items], categoryIndex) => (
         <div 
