@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import bannerImage from '../assets/banner-profuctos.jpeg';
 
 // Iconos modernizados con trazos más finos
 const icons = {
@@ -14,17 +15,22 @@ const icons = {
 <Layout title="Contacto - Mavepo">
   <main class="bg-white">
     <!-- Hero Section -->
-    <div class="relative mb-28 bg-gradient-to-br from-gray-900 to-red-900 text-white">
-      <div class="absolute inset-0 opacity-20 bg-[url('/images/pattern.svg')]"></div>
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
-        <div class="border border-white inline p-2 px-3 rounded-full text-sm text-red-300 font-bold">Estamos para servirte</div>
-        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight my-4">Contacto</h1>
-        <p class="text-xl max-w-2xl text-red-100">
+   
+    <div class="mb-28 p-10 py-20 w-full text-white  rounded-b-lg bg-cover bg-center bg-no-repeat relative" style={`background-image: url(${bannerImage.src});`}>
+      <!-- Overlay negro con opacidad -->
+      <div class="absolute inset-0 bg-black opacity-50 rounded-b-lg"></div>
+      
+      <!-- Contenido -->
+      <div class="relative z-10">
+        <div class="border border-white inline p-2 px-3 rounded-full text-sm text-red-200 font-bold">Estamos para servirte</div>
+        <h1 class="text-4xl font-bold mb-4 mt-6">Contacto</h1>
+        <p class="text-xl text-white max-w-3xl ">
           Estamos aquí para responder a tus preguntas y brindarte el mejor servicio.
           Contáctanos y te atenderemos a la brevedad.
         </p>
       </div>
     </div>
+    
     
     <!-- Contact Info Cards -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 -mt-12 sm:-mt-16 mb-12 sm:mb-16">
