@@ -26,64 +26,80 @@ const stats = [
   { value: "1000+", label: "Clientes satisfechos", icon: icons.award },
 ];
 
-const team = [
-  {
-    name: "Carlos Rodríguez",
-    position: "Director General",
-    bio: "Con más de 30 años de experiencia en el sector agrícola, lidera la visión estratégica de Mavepo.",
-   
-  },
-  {
-    name: "María González",
-    position: "Gerente Comercial",
-    bio: "Especialista en ventas con amplio conocimiento técnico sobre maquinaria agrícola Massey Ferguson.",
-    
-  },
-  {
-    name: "Juan Pérez",
-    position: "Jefe de Servicio Técnico",
-    bio: "Ingeniero mecánico certificado por Massey Ferguson con 15 años de experiencia en mantenimiento.",
-   
-  },
-  {
-    name: "Laura Martínez",
-    position: "Responsable de Repuestos",
-    bio: "Experta en logística y gestión de inventarios, garantiza la disponibilidad de repuestos originales.",
-   
-  }
-];
 
 const locations = [
   {
-    city: "Ciudad Principal",
-    address: "Ruta Nacional 9, Km 123",
-    phone: "+123 456 7890",
-    email: "sede@mavepo.com"
+    city: "SLP MATRIZ",
+    address: "Av. Salvador Nava Martínez 217, Capricornio, 78399 San Luis Potosí, S.L.P.",
+    phone: "+444 254 9108 Y 8146749",
+    email: "info@mavepo.com"
   },
   {
-    city: "Ciudad Norte",
-    address: "Av. Agricultores 456",
-    phone: "+123 456 7891",
-    email: "norte@mavepo.com"
+    city: "Rio Verde",
+    address: "Carlos Jonguitud Barrios 380, 79626 Rioverde, S.L.P.",
+    phone: "+487 8726 974",
+    email: "info@mavepo.com"
   },
   {
-    city: "Ciudad Sur",
-    address: "Ruta Provincial 22, Km 45",
-    phone: "+123 456 7892",
-    email: "sur@mavepo.com"
+    city: "Ciudad Valles",
+    address: "Carretera México-Laredo Sur No. 1006, 5a y 6a, Fraccionamiento Lomas del Oriente, 79084 Cdad. Valles, S.L.P.",
+    phone: "+481 382 4177",
+    email: "info@mavepo.com"
   },
   {
-    city: "Ciudad Este",
-    address: "Parque Industrial, Lote 78",
-    phone: "+123 456 7893",
-    email: "este@mavepo.com"
+    city: "EBANO",
+    address: "Lázaro Cárdenas 25, Las Americas, 79120 Ebano, S.L.P.",
+    phone: "+444 165 5746",
+    email: "info@mavepo.com"
   },
   {
-    city: "Ciudad Oeste",
-    address: "Av. de los Tractores 789",
-    phone: "+123 456 7894",
-    email: "oeste@mavepo.com"
-  }
+    city: "SALINAS",
+    address: "Mariano Matamoros 14, Centro, 78620 Salinas de Hidalgo, S.L.P.",
+    phone: "+444 411 6435",
+    email: "info@mavepo.com"
+  },
+  {
+    city: "SLPAZ",
+    address: "MEntronque, Carr. Federal 57, San Luis de la Paz - Dolores Hidalgo km 87, 37900 Gto.",
+    phone: "+444 302 8865",
+    email: "info@mavepo.com"
+  },
+  {
+    city: "GPE",
+    address: "Av. Revolución Mexicana N.101 Col. La Victoria C.P. 98614",
+    phone: "+492 921 1701 Y 492 921 3868",
+    email: "info@mavepo.com"
+  },
+  {
+    city: "FRESNILLO",
+    address: "P.º del Mineral 17, Las Flores, 99050 Fresnillo, Zac.",
+    phone: "+493 935 7705 Y 493 935 7622",
+    email: "info@mavepo.com"
+  },
+  {
+    city: "LORETO",
+    address: "SANTO TOMAS 201 D, Santa Cruz, 98833 Loreto, Zac.",
+    phone: "+4496 963 7086",
+    email: "info@mavepo.com"
+  },
+  {
+    city: "GUZMAN",
+    address: "Carr.Cd. Guzmán - Zapotiltic KM 2.5 C. 49080",
+    phone: "+4341 133 1555 Y 341 412 7412",
+    email: "info@mavepo.com"
+  },
+  {
+    city: "COLIMA",
+    address: "Carlos de La Madrid Béjar B. 887, El Tecolote, 28090 Colima, Col.",
+    phone: "+312 161 3189 Y 312 161 3190",
+    email: "info@mavepo.com"
+  },
+  {
+    city: "AUTLAN",
+    address: "Perif. Luis Donaldo Colosio 1320, Las Lanzas, 48902 Autlán de Navarro, Jal.",
+    phone: "+317 108 6287",
+    email: "info@mavepo.com"
+  },
 ];
 ---
 
@@ -209,7 +225,7 @@ const locations = [
     <!-- Facilities -->
     <div class="mb-16 relative z-10">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Nuestras Instalaciones</h2>
+        <h2 class="text-3xl font-bold mb-4">Nuestras Sucursales</h2>
         <p class="text-gray-600 max-w-3xl mx-auto">
           Contamos con modernas instalaciones diseñadas para brindar un servicio integral 
           y de calidad a todos nuestros clientes
@@ -287,7 +303,12 @@ const locations = [
         ))}
       </div>
     </div>
-    
+    <div class="w-full h-96 mb-10 relative z-10">
+      <iframe 
+        src="https://www.google.com/maps/d/embed?mid=16fggqF9fEOTrLEJycwGT32W0kmvKPQQ&ehbc=2E312F&noprof=1" 
+        class="w-full h-full border-0 rounded-xl">
+      </iframe>
+    </div>
     <!-- CTA -->
     <div class="bg-red-500 text-white rounded-lg p-12 text-center relative z-10">
       <h2 class="text-3xl font-bold mb-4">¿Quiere formar parte de nuestro equipo?</h2>

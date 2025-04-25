@@ -244,14 +244,16 @@ const products = {
 
     <!-- Product Categories Tabs -->
     <div class="mb-12">
-      <div class="flex bg-red-200 flex-wrap justify-center p-1 mb-8">
+      
+      <div class="flex flex-wrap justify-center p-1 mb-8">
         {categories.map((category, index) => (
+          <div class="bg-red-200 p-2">
           <button 
             class={`px-4 py-2 mx-1 rounded-md font-medium ${index === 0 ? 'bg-red-100 text-gray-700 cursor-pointer' : 'cursor-pointer bg-red-100 text-gray-700 hover:bg-red-200'}`}
             data-tab={category.id}
           >
             {category.name}
-          </button>
+          </button></div>
         ))}
       </div>
 
