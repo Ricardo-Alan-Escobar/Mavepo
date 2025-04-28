@@ -3,10 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import { Image } from 'astro:assets';
 import MVP from '../assets/mvp.png'
-import mvp1 from '../assets/1.png'
-import mvp2 from '../assets/2.png'
-import mvp3 from '../assets/3.png'
-import mvp4 from '../assets/4.png'
+import mvp1 from '../assets/Sucursales/AUTLAN.jpg'
+import mvp2 from '../assets/Sucursales/CDV.jpg'
+import mvp3 from '../assets/Sucursales/COLIMA.jpg'
+import mvp4 from '../assets/Sucursales/EBANO.jpg'
+import mvp5 from '../assets/Sucursales/FRESNILLO.jpg'
+import mvp6 from '../assets/Sucursales/GPE.jpg'
+import mvp7 from '../assets/Sucursales/GUZMAN.jpg'
+import mvp8 from '../assets/Sucursales/LORETO.jpg'
+import mvp9 from '../assets/Sucursales/RVD.jpg'
+import mvp10 from '../assets/Sucursales/SALINAS.jpg'
+import mvp11 from '../assets/Sucursales/SLPAZ.jpg'
 
 // Iconos
 const icons = {
@@ -232,46 +239,191 @@ const locations = [
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="relative h-[300px] rounded-lg overflow-hidden">
-          <img 
-            src={mvp1.src}
-            alt="Showroom Mavepo" 
-            class="object-cover w-full h-full"
-          />
-          <div class="absolute inset-0 bg-opacity-40 flex items-center justify-center">
-            <h3 class="text-white text-2xl font-bold">Stock</h3>
+      <div class="relative">
+        <!-- Carousel container -->
+        <div id="facilities-carousel" class="overflow-hidden">
+          <div id="carousel-inner" class="flex transition-transform duration-500 ease-in-out">
+            <!-- Slide 1 -->
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp1.src}
+                  alt="Showroom Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0 bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Autlan</h3>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp2.src}
+                  alt="Taller Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Ciudad Valles</h3>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp3.src}
+                  alt="Almacén de Repuestos Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0 bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Colima</h3>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp4.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">EBANO</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp5.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Fresnillo</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp6.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">guadalupe</h3>
+                </div>
+              </div>
+            </div>
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp7.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Guzman</h3>
+                </div>
+              </div>
+            </div>
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp8.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Loreto</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp9.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Rio Verde</h3>
+                </div>
+              </div>
+            </div>
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp10.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">Salinas</h3>
+                </div>
+              </div>
+            </div>
+            <div class="min-w-full">
+              <div class="relative h-[400px] rounded-lg overflow-hidden">
+                <img 
+                  src={mvp11.src}
+                  alt="Centro de Capacitación Mavepo" 
+                  class=" w-full h-full"
+                />
+                <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
+                  <h3 class="text-white text-2xl font-bold">San Luis de la Paz</h3>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-        <div class="relative h-[300px] rounded-lg overflow-hidden">
-          <img 
-            src={mvp2.src}
-            alt="Taller Mavepo" 
-            class="object-cover w-full h-full"
-          />
-          <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
-            <h3 class="text-white text-2xl font-bold">Sala de estar</h3>
-          </div>
-        </div>
-        <div class="relative h-[300px] rounded-lg overflow-hidden">
-          <img 
-            src={mvp3.src}
-            alt="Almacén de Repuestos Mavepo" 
-            class="object-cover w-full h-full"
-          />
-          <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
-            <h3 class="text-white text-2xl font-bold">Agencia</h3>
-          </div>
-        </div>
-        <div class="relative h-[300px] rounded-lg overflow-hidden">
-          <img 
-            src={mvp4.src}
-            alt="Centro de Capacitación Mavepo" 
-            class="object-cover w-full h-full"
-          />
-          <div class="absolute inset-0  bg-opacity-40 flex items-center justify-center">
-            <h3 class="text-white text-2xl font-bold">Recepción</h3>
-          </div>
+        
+        
+        <!-- Navigation Buttons -->
+        <button 
+          id="prev-btn"
+          class="absolute top-1/2 left-2 -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 rounded-full p-2 z-10 shadow-md"
+          aria-label="Anterior"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <button 
+          id="next-btn"
+          class="absolute top-1/2 right-2 -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 rounded-full p-2 z-10 shadow-md"
+          aria-label="Siguiente"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        
+        <!-- Indicators -->
+        <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator active" data-index="0" aria-label="Slide 1"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="1" aria-label="Slide 2"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="2" aria-label="Slide 3"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="3" aria-label="Slide 4"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="4" aria-label="Slide 5"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="5" aria-label="Slide 6"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="6" aria-label="Slide 7"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="7" aria-label="Slide 8"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="8" aria-label="Slide 9"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="9" aria-label="Slide 10"></button>
+          <button class="h-2 w-2 rounded-full bg-white bg-opacity-60 indicator" data-index="10" aria-label="Slide 11"></button>
         </div>
       </div>
     </div>
@@ -321,3 +473,70 @@ const locations = [
     </div>
   </div>
 </Layout>
+
+<script>
+  // Carousel functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('carousel-inner');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    let currentIndex = 0;
+    const totalSlides = 11;
+    
+    // Function to update carousel position
+    function updateCarousel() {
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+      
+      // Update indicators
+      indicators.forEach((indicator, index) => {
+        if (index === currentIndex) {
+          indicator.classList.add('bg-opacity-100');
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('bg-opacity-100');
+          indicator.classList.remove('active');
+        }
+      });
+    }
+    
+    // Event listeners for buttons
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    });
+    
+    // Event listeners for indicators
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+    
+    // Optional: Auto-slide functionality
+    let intervalId = setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    }, 4000); // Change slide every 5 seconds
+    
+    // Stop auto-sliding when user interacts
+    const carouselContainer = document.getElementById('facilities-carousel');
+    carouselContainer.addEventListener('mouseenter', () => {
+      clearInterval(intervalId);
+    });
+    
+    carouselContainer.addEventListener('mouseleave', () => {
+      intervalId = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+      }, 5000);
+    });
+  });
+</script>
