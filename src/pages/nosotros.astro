@@ -14,6 +14,8 @@ import mvp8 from '../assets/Sucursales/LORETO.jpg'
 import mvp9 from '../assets/Sucursales/RVD.jpg'
 import mvp10 from '../assets/Sucursales/SALINAS.jpg'
 import mvp11 from '../assets/Sucursales/SLPAZ.jpg'
+import PageTransition from '../components/PageTransition.astro';
+
 
 // Iconos
 const icons = {
@@ -109,8 +111,14 @@ const locations = [
   },
 ];
 ---
+<header>
 
+  <script type="module" src="/about.js"></script>
+  <script type="module" src="/about2.js"></script>
+</header>
 <Layout title="Nosotros - Mavepo">
+
+  <PageTransition />
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
     <!-- Manchas desvanecidas en el fondo -->
     <div class="absolute top-0 right-0 w-72 h-72 rounded-full bg-gray-100 opacity-60 translate-x-1/4 -translate-y-1/4 hidden sm:block"></div>
@@ -437,7 +445,8 @@ const locations = [
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Vista de escritorio: grid normal -->
+      <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {locations.map((location) => (
           <Card>
             <div class="p-6">
@@ -454,6 +463,52 @@ const locations = [
           </Card>
         ))}
       </div>
+      
+      <!-- Vista móvil: carrusel -->
+      <div class="md:hidden">
+        <!-- Contenedor del carrusel -->
+        <div class="carousel-container overflow-hidden">
+          <!-- Contenedor de slides -->
+          <div id="slides-container" class="flex transition-transform duration-300 ease-in-out">
+            {locations.map((location) => (
+              <div class="carousel-slide w-full flex-shrink-0">
+                <Card>
+                  <div class="p-6">
+                    <div class="flex items-start">
+                      <span set:html={icons.mapPin} />
+                      <div class="w-1/12">
+                        <h3 class="font-bold text-lg mb-2">{location.city}</h3>
+                        <p class="text-gray-600 mb-1 w-10/12">{location.address}</p>
+                        <p class="text-gray-600 mb-1">{location.phone}</p>
+                        <p class="text-gray-600">{location.email}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            ))}
+          </div>
+          
+          <!-- Controles del carrusel -->
+          <div class="flex justify-center mt-4 gap-2">
+            <button id="prev-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-600 p-2 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button id="next-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-600 p-2 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Indicadores del carrusel -->
+          <div id="carousel-indicators" class="flex justify-center mt-4 gap-2">
+            <!-- Los indicadores se generarán con JavaScript -->
+          </div>
+        </div>
+      </div>
     </div>
     <div class="w-full h-96 mb-10 relative z-10">
       <iframe 
@@ -467,76 +522,9 @@ const locations = [
       <p class="text-xl mb-8 max-w-2xl mx-auto">
         Estamos siempre en búsqueda de talento para seguir creciendo y mejorando nuestro servicio
       </p>
-      <button class="px-6 bg-sky-600 cursor-pointer hover:bg-sky-500 py-3 text-base font-medium rounded-md">
+      <a href="https://www.linkedin.com/" class="px-6 bg-sky-600 cursor-pointer hover:bg-sky-500 py-3 text-base font-medium rounded-md">
         Linkedin
-      </button>
+      </a>
     </div>
   </div>
 </Layout>
-
-<script>
-  // Carousel functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.getElementById('carousel-inner');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const indicators = document.querySelectorAll('.indicator');
-    
-    let currentIndex = 0;
-    const totalSlides = 11;
-    
-    // Function to update carousel position
-    function updateCarousel() {
-      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-      
-      // Update indicators
-      indicators.forEach((indicator, index) => {
-        if (index === currentIndex) {
-          indicator.classList.add('bg-opacity-100');
-          indicator.classList.add('active');
-        } else {
-          indicator.classList.remove('bg-opacity-100');
-          indicator.classList.remove('active');
-        }
-      });
-    }
-    
-    // Event listeners for buttons
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateCarousel();
-    });
-    
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-    });
-    
-    // Event listeners for indicators
-    indicators.forEach((indicator, index) => {
-      indicator.addEventListener('click', () => {
-        currentIndex = index;
-        updateCarousel();
-      });
-    });
-    
-    // Optional: Auto-slide functionality
-    let intervalId = setInterval(() => {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateCarousel();
-    }, 4000); // Change slide every 5 seconds
-    
-    // Stop auto-sliding when user interacts
-    const carouselContainer = document.getElementById('facilities-carousel');
-    carouselContainer.addEventListener('mouseenter', () => {
-      clearInterval(intervalId);
-    });
-    
-    carouselContainer.addEventListener('mouseleave', () => {
-      intervalId = setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateCarousel();
-      }, 5000);
-    });
-  });
-</script>

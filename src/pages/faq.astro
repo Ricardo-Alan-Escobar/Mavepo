@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import bannerImage from '../assets/bannerfaq.jpeg';
-
+import PageTransition from '../components/PageTransition.astro';
 // Categorías de preguntas frecuentes
 const categories = [
   { id: "general", name: "Información General" },
@@ -105,7 +105,7 @@ const faqs = {
     <script type="module" src="/faq.js"></script>
 </header>
 <Layout title="Preguntas Frecuentes - Mavepo">
-  
+  <PageTransition />
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
    
     <!-- Page Header -->

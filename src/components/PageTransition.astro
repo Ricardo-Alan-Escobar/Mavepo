@@ -1,0 +1,54 @@
+---
+// src/components/PageExitAnimation.astro
+interface Props {
+  duration?: number;
+}
+
+const { duration = 0.4 } = Astro.props;
+---
+
+<style>
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  body.fade-exit {
+    animation: fadeOut var(--exit-duration) ease-in forwards;
+  }
+</style>
+
+<script is:inline>
+  const duration = Number({duration}) || 0.4;
+
+  if (!window.__pageExitHandled) {
+    window.__pageExitHandled = true;
+
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (!link) return;
+
+      const isSameOrigin = link.href.startsWith(window.location.origin);
+      const isNewTab = link.target === '_blank';
+      const isHash = link.hash && link.pathname === window.location.pathname;
+      const isDownload = link.hasAttribute('download');
+      const isIgnored = link.hasAttribute('data-no-transition');
+
+      if (!isSameOrigin || isNewTab || isHash || isDownload || isIgnored) return;
+
+      e.preventDefault();
+      document.body.classList.add('fade-exit');
+
+      setTimeout(() => {
+        window.location.href = link.href;
+      }, duration * 1000);
+    });
+  }
+</script>
+
+<!-- Nada visible. Solo es para comportamiento -->
+<div style={`--exit-duration: ${duration}s`}></div>
