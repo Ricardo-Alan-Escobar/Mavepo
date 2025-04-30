@@ -22,11 +22,15 @@ const { duration = 0.4 } = Astro.props;
   }
 </style>
 
-<script is:inline>
-  const duration = Number({duration}) || 0.4;
+<!-- Pasamos la duración como atributo data -->
+<div id="page-exit-config" data-duration={duration}></div>
 
+<script is:inline>
   if (!window.__pageExitHandled) {
     window.__pageExitHandled = true;
+
+    const config = document.getElementById('page-exit-config');
+    const duration = parseFloat(config?.dataset.duration || '0.4');
 
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a');
@@ -50,5 +54,9 @@ const { duration = 0.4 } = Astro.props;
   }
 </script>
 
-<!-- Nada visible. Solo es para comportamiento -->
-<div style={`--exit-duration: ${duration}s`}></div>
+<!-- Aplicamos la duración como variable CSS para la animación -->
+<style>
+  :root {
+    --exit-duration: {duration}s;
+  }
+</style>
