@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import t1 from '../assets/Tractores/mf1.png';
 import t2 from '../assets/Tractores/mf2.png';
 import t3 from '../assets/Tractores/mf3.png';
@@ -13,12 +12,25 @@ import t9 from '../assets/Tractores/mf9.png';
 import t10 from '../assets/Tractores/mf10.png';
 import t11 from '../assets/Tractores/mf11.png';
 import t12 from '../assets/Tractores/mf12.png';
+import Rastras from '../assets/Implementos/rastratiro.png';
+import Cultivadoras from '../assets/Implementos/Cultivadoras.png';
 import Sembradoras from '../assets/Implementos/sembradoras.png';
 import Pulverizadoras from '../assets/Implementos/pulverizadora.png';
 import Rastra from '../assets/Implementos/rastra.png';
 import Cosechadoras from '../assets/Implementos/cosechadora.png';
 import bannerImage from '../assets/banner-contacto.jpg';
- 
+import Arados from '../assets/Implementos/arados.png';
+import Aspersora from '../assets/Implementos/aspersora.png';
+import Espaciador from '../assets/Implementos/espaciador.png';
+import Desmenuzadora from '../assets/Implementos/desmenuzadora.png';
+import Desvaradora from '../assets/Implementos/desvaradora.png';
+import Rastrillo from '../assets/Implementos/rastrillo.png';
+import Remolques from '../assets/Implementos/Remolque.png';
+import Cargador from '../assets/Implementos/Cargador.png';
+import Molinio from '../assets/Implementos/Molino.png';
+import Subsuelos from '../assets/Implementos/subsuelo.png';
+import Remolquecama from '../assets/Implementos/remolquecama.png';
+
 const categories = [
   { id: "tractores", name: "Tractores" },
   { id: "cosechadoras", name: "Cosechadoras" },
@@ -162,7 +174,7 @@ const products = {
   cosechadoras: [
     {
       id: 1,
-      name: "cosechadora MF6690",
+      name: "Cosechadora MF6690",
       description: "La cosechadora más avanzada con tecnología de vanguardia",
       image: Cosechadoras.src,
       features: ["647 HP", "Rotor Dual", "IDEALharvest™"],
@@ -180,7 +192,7 @@ const products = {
       image: Sembradoras.src,
       features: ["Múltiples configuraciones", "Sistema de dosificación preciso", "Monitoreo electrónico"],
       links: [
-      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-sembradoras.pdf" }
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-sembradoras.pdf" }
       ]
     },
     {
@@ -190,31 +202,150 @@ const products = {
       image: Pulverizadoras.src,
       features: ["Barra de 36m", "Tanque de 6000L", "Control de secciones"],
       links: [
-      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/DIGITAL-24-FICHATECNICA-MF530R.pdf" }
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/DIGITAL-24-FICHATECNICA-MF530R.pdf" }
       ]
     },
-    
     {
       id: 3,
-      name: "RASTRA INTEGRAL",
-      description: "Pacas de alta densidad y calidad superior",
+      name: "Rastra Integral",
+      description: "Preparación eficiente del suelo para cultivos de alta calidad",
       image: Rastra.src,
-      features: ["Pacas rectangulares", "Sistema de atado doble", "Monitor C1000"],
+      features: ["Discos de alta durabilidad", "Ajuste de profundidad", "Estructura robusta"],
       links: [
-      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-rastraintegral.pdf" }
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-rastraintegral.pdf" }
+      ]
+    },
+    {
+      id: 4,
+      name: "Cultivadoras",
+      description: "Control efectivo de malezas y aireación del suelo",
+      image: Cultivadoras.src,
+      features: ["Dientes flexibles", "Ajuste hidráulico", "Alta velocidad de operación"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-cultivadoras.pdf" }
+      ]
+    },
+    {
+      id: 5,
+      name: "Rastras de Tiro",
+      description: "Preparación perfecta del suelo para siembra",
+      image: Rastras.src,
+      features: ["Discos de alto rendimiento", "Estructura robusta", "Mayor velocidad de trabajo"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-rastrareforzada.pdf" }
+      ]
+    },
+    {
+      id: 6,
+      name: "Arados",
+      description: "Volteo completo del suelo para una preparación profunda",
+      image: Arados.src,
+      features: ["Alta penetración", "Versiones fijas y reversibles", "Sistema de seguridad"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-arados.pdf" }
+      ]
+    },
+    {
+      id: 7,
+      name: "Esparcidor",
+      description: "Distribución uniforme de fertilizantes y enmiendas",
+      image: Espaciador.src,
+      features: ["Capacidad de 1.000 a 3.000 L", "Sistema de dosificación variable", "Fácil calibración"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-esparcidor.pdf" }
+      ]
+    },
+    {
+      id: 8,
+      name: "Aspersora",
+      description: "Tecnología avanzada para la aplicación de productos fitosanitarios",
+      image: Aspersora.src,
+      features: ["Sistema de pulverización eficiente", "Control de secciones", "Tanque de gran capacidad"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-aspersoras.pdf" }
+      ]
+    },
+    {
+      id: 9,
+      name: "Desmenuzadora",
+      description: "Descomposición rápida de residuos agrícolas",
+      image: Desmenuzadora.src,
+      features: ["Sistema de corte eficiente", "Ajuste de altura", "Compatible con tractores Massey Ferguson"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-desmenuzadora.pdf" }
+      ]
+    },
+    {
+      id: 10,
+      name: "Rastrillo",
+      description: "Preparación del suelo y control de malezas",
+      image: Rastrillo.src,
+      features: ["Alta durabilidad", "Ajuste de profundidad", "Compatible con tractores Massey Ferguson"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-rastrillos.pdf" }
+      ]
+    },
+    {
+      id: 11,
+      name: "Desvaradora",
+      description: "Control de malezas y residuos agrícolas",
+      image: Desvaradora.src,
+      features: ["Alta durabilidad", "Ajuste de profundidad", "Compatible con tractores Massey Ferguson"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-desvaradoras.pdf" }
+      ]
+    }, 
+    {
+      id: 12,
+      name: "Remolques",
+      description: "Transporte eficiente de productos agrícolas",
+      image: Remolques.src,
+      features: ["Alta capacidad", "Estructura robusta", "Compatible con tractores Massey Ferguson"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-remolques.pdf" }
+      ]
+    },
+    {
+      id: 13,
+      name: "Cargador Frontal",
+      description: "Carga y transporte de materiales con facilidad",
+      image: Cargador.src,
+      features: ["Alta capacidad de carga", "Compatible con tractores Massey Ferguson", "Fácil instalación y desmontaje"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-cargadoras.pdf" }
+      ]
+    },
+    {
+      id: 14,
+      name: "Molino de Martillos",
+      description: "Molienda eficiente de granos y forrajes",
+      image: Molinio.src,
+      features: ["Alta capacidad de molienda", "Sistema de martillos intercambiables", "Fácil mantenimiento"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-molinointegral.pdf" }
+      ]
+    },
+    {
+      id: 15,
+      name: "Subsuelos",
+      description: "Preparación profunda del suelo para cultivos de alto rendimiento",
+      image: Subsuelos.src,
+      features: ["Disponible en tres, cinco y siete timones (ajustables en el ancho de trabajo).  "],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/FichaTecnica_Subsuelos.pdf" }
+      ]
+    },
+    {
+      id: 16,
+      name: "Remolques Cama Baja",
+      description: "Transporte eficiente de maquinaria agrícola",
+      image: Remolquecama.src,
+      features: ["Alta capacidad de carga", "Estructura robusta", "Compatible con tractores Massey Ferguson"],
+      links: [
+        { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-remolque-cama-baja.pdf" }
       ]
     },
 
-    {
-      id: 3,
-      name: "RASTRA INTEGRAL",
-      description: "Pacas de alta densidad y calidad superior",
-      image: Rastra.src,
-      features: ["Pacas rectangulares", "Sistema de atado doble", "Monitor C1000"],
-      links: [
-      { title: "Ficha Técnica", url: "https://masseyferguson.mx/dataSheets/fichatecnica-rastraintegral.pdf" }
-      ]
-    },
   ],
   
 
@@ -223,7 +354,7 @@ const products = {
 ---
   
 
-<script type="module" src="/header.js"></script>
+<script type="module" src="/productos.js"></script>
 <Layout title="Productos - Mavepo">
   <div class=" px-4 sm:px-6 lg:px-8 pb-12">
     <!-- Page Header -->
@@ -245,79 +376,130 @@ const products = {
     <!-- Product Categories Tabs -->
     <div class="mb-12">
       
-      <div class="flex flex-wrap justify-center p-1 mb-8">
-        {categories.map((category, index) => (
-          <div class="bg-red-200 p-2">
-          <button 
-            class={`px-4 py-2 mx-1 rounded-md font-medium ${index === 0 ? 'bg-red-100 text-gray-700 cursor-pointer' : 'cursor-pointer bg-red-100 text-gray-700 hover:bg-red-200'}`}
-            data-tab={category.id}
-          >
-            {category.name}
-          </button></div>
-        ))}
+      <div class="tabs-container flex justify-center">
+        <div class="tabs-header">
+          {categories.map((category, index) => (
+            <button 
+              class={`tab-btn ${index === 0 ? 'active' : ''}`}
+              data-tab={category.id}
+            >
+              <span class="tab-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 8v8"></path>
+                  <path d="M8 12h8"></path>
+                </svg>
+              </span>
+              <span class="tab-text">{category.name}</span>
+            </button>
+          ))}
+        </div>
+        
+        
       </div>
+      
 
 
       {Object.entries(products).map(([category, items], categoryIndex) => (
-        <div 
-          class={`tab-content ${categoryIndex === 0 ? 'block' : 'hidden'}`} 
-          id={`tab-${category}`}
-        >
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {items.map((product) => (
-              <Card>
-                <div class="relative h-64 flex items-center justify-center">
-                  <img src={product.image || "/placeholder.svg"} alt={product.name} class="object-cover w-auto h-full" />
-                </div>
-                <div class="p-6">
-                  <h3 class="text-xl font-bold mb-2">{product.name}</h3>
-                  <p class="text-gray-600 mb-4">{product.description}</p>
-                  <div class="mb-4">
-                    <h4 class="font-semibold mb-2">Características:</h4>
-                    <ul class="list-disc pl-5 text-gray-600">
-                      {product.features.map((feature) => (
-                        <li>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  {/* Select para múltiples enlaces */}
-                  {product.links && product.links.length > 0 && (
-                    <div class="mt-4">
-                      {product.links.length === 1 ? (
-                        // Si solo hay un enlace, mostrar un botón simple
-                        <a href={product.links[0].url} target="_blank" rel="noopener noreferrer" class="block w-full">
-                          <button class="bg-red-500 hover:bg-red-600 cursor-pointer text-white px-4 py-2 rounded-md text-sm font-medium w-full">
-                            {product.links[0].title}
-                          </button>
-                        </a>
-                      ) : (
-                        // Si hay múltiples enlaces, mostrar un select estilizado
-                        <div class="relative">
-                          <select 
-                            id={`doc-select-${product.id}`} 
-                            class="appearance-none bg-red-500 hover:bg-red-600 text-white px-4 py-2 pr-8 rounded-md text-sm font-medium w-full cursor-pointer"
-                            onchange={`if(this.value !== '') window.open(this.value, '_blank')`}
-                          >
-                            <option value="" selected  class="bg-gray-100 text-black">Ficha Técnica</option>
-                            {product.links.map((link) => (
-                              <option value={link.url}  class="bg-gray-100 text-black">{link.title}</option>
-                            ))}
-                          </select>
-                          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </Card>
-            ))}
+        <!-- Tab Content con Cards Rediseñadas con Tailwind -->
+<div 
+  class={`tab-content ${categoryIndex === 0 ? 'block' : 'hidden'}`} 
+  id={`tab-${category}`}
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {items.map((product) => (
+      <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+        
+        {/* Imagen del producto con overlay y efecto al hover */}
+        <div class="relative h-80 overflow-hidden bg-gray-50">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+          <img 
+            src={product.image || "/placeholder.svg"} 
+            alt={product.name} 
+            class="w-5xl max-h-full object-contain mx-auto transform group-hover:scale-105 transition-transform duration-500 filter-none" 
+          />
+          
+          {/* Badge posicionado en la esquina superior */}
+          <div class="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-20 shadow-md">
+            Nuevo
           </div>
         </div>
+        
+        {/* Contenido de la card */}
+        <div class="p-6">
+          {/* Título y descripción */}
+          <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-red-500 transition-colors duration-200">{product.name}</h3>
+          <p class="text-gray-600 mb-4 text-sm">{product.description}</p>
+          
+          {/* Características con iconos */}
+          <div class="mb-5">
+            <h4 class="font-semibold mb-3 text-gray-700 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Características:
+            </h4>
+            <ul class="space-y-2">
+              {product.features.map((feature) => (
+                <li class="flex items-start">
+                  <div class="text-red-500 mr-2 mt-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span class="text-sm text-gray-600">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Botones y selects */}
+          {product.links && product.links.length > 0 && (
+            <div class="mt-6">
+              {product.links.length === 1 ? (
+                // Si solo hay un enlace, mostrar un botón con efecto
+                <a 
+                  href={product.links[0].url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="block w-full group"
+                >
+                  <button class="relative w-full overflow-hidden bg-gradient-to-r from-red-500 to-red-600 text-white font-medium rounded-lg px-4 py-3 flex items-center justify-center group-hover:from-red-600 group-hover:to-red-700 transition-all duration-300 shadow-md">
+                    <span class="relative z-10 flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      {product.links[0].title}
+                    </span>
+                  </button>
+                </a>
+              ) : (
+                // Si hay múltiples enlaces, mostrar un select estilizado
+                <div class="relative">
+                  <select 
+                    id={`doc-select-${product.id}`} 
+                    class="block w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg px-4 py-3 appearance-none font-medium cursor-pointer shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                    onchange={`if(this.value !== '') window.open(this.value, '_blank')`}
+                  >
+                    <option value="" selected class="bg-white text-gray-700">Ficha Técnica</option>
+                    {product.links.map((link) => (
+                      <option value={link.url} class="bg-white text-gray-700">{link.title}</option>
+                    ))}
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
       ))}
     </div>
 
@@ -337,45 +519,65 @@ const products = {
     </div>
   </div>
 </Layout>
+<style>
+  
+  
+  .tabs-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1.5rem;
+  }
+  
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: none;
+    background-color: white;
+    color: #4b5563;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .tab-btn:hover:not(.active) {
+    background-color: #f9fafb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tab-btn.active {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+  }
+  
+  .tab-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Tabs functionality
-    const tabButtons = document.querySelectorAll('[data-tab]');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const tabId = button.getAttribute('data-tab');
-        
-        // Update active tab button
-        tabButtons.forEach(btn => {
-          if (btn.getAttribute('data-tab') === tabId) {
-            btn.classList.add('bg-red-100', 'text-black');
-            btn.classList.remove('bg-red-100', 'text-gray-700', 'hover:bg-red-200');
-          } else {
-            btn.classList.remove('bg-red-100', 'text-black');
-            btn.classList.add('bg-red-100', 'text-gray-700', 'hover:bg-red-200');
-          }
-        });
-        
-        // Show active tab content
-        tabContents.forEach(content => {
-          if (content.id === `tab-${tabId}`) {
-            content.classList.remove('hidden');
-            content.classList.add('block');
-          } else {
-            content.classList.add('hidden');
-            content.classList.remove('block');
-          }
-        });
-      });
-    });
-
-    // Reset select elements after navigation
-    const selects = document.querySelectorAll('select[id^="doc-select-"]');
-    selects.forEach(select => {
-      select.selectedIndex = 0;
-    });
-  });
-</script>
+  
+  
+  @media (max-width: 640px) {
+    .tabs-header {
+      justify-content: center;
+    }
+    
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>

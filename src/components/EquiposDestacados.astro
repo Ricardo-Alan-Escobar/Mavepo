@@ -16,16 +16,19 @@ const featuredProducts = [
     title: "Tractores Serie MF 1500",
     description: "Potencia y eficiencia para las tareas más exigentes",
     image: Mf1.src,
+    link: "https://masseyferguson.mx/dataSheets/fichatecnica-mf1520.pdf",
   },
   {
     title: "MF serie classic 35-105 HP",
     description: "Tecnología de vanguardia para una cosecha perfecta",
     image: Mf2.src,
+    link: "https://masseyferguson.mx/dataSheets/fichatecnica-mf35x.pdf",
   },
   {
     title: "MF 2600 LR",
     description: "Soluciones completas para cada etapa del cultivo",
     image: Mf3.src,
+    link: "https://masseyferguson.mx/dataSheets/fichatecnica-mf2625.pdf",
   },
 ];
 ---
@@ -54,7 +57,7 @@ const featuredProducts = [
               <p class="text-gray-600 mb-4 text-animate text-delay-200">
                 {product.description}
               </p>
-              <a href="#" class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate text-delay-300">
+              <a href={product.link} class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate text-delay-300">
                 Ver Detalles
               </a>
             </div>
