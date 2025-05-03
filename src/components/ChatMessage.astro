@@ -1,0 +1,21 @@
+---
+export interface Props {
+  type: 'user' | 'bot';
+  message: string;
+}
+
+const { type, message } = Astro.props;
+---
+
+<div class={`flex mb-4 ${type === 'user' ? 'flex-row-reverse' : ''}`}>
+  <div class={`w-8 h-8 rounded-full flex justify-center items-center ${type === 'user' ? 'ml-2' : 'mr-2'}`}>
+    {type === 'bot' ? '🚜' : '👤'}
+  </div>
+  <div class={`px-3 py-2 rounded-lg max-w-[70%] break-words ${
+    type === 'user' 
+      ? 'bg-blue-100 text-gray-800 rounded-tr-none' 
+      : 'bg-gray-100 text-gray-800 rounded-tl-none'
+  }`}>
+    {message}
+  </div>
+</div>

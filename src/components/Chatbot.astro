@@ -1,0 +1,34 @@
+---
+import ChatMessage from './ChatMessage.astro';
+import ChatInput from './ChatInput.astro';
+---
+
+<div 
+  class="fixed bottom-5 right-5 w-80 md:w-96 h-[450px] rounded-lg shadow-lg bg-white overflow-hidden z-50 flex flex-col transition-all duration-300" 
+  id="chatbot-container"
+>
+  <!-- Header -->
+  <div class="flex justify-between items-center p-3 bg-red-500 text-white" id="chatbot-header">
+    <div>
+    <h3 class="text-base  font-medium m-0">ChatBot</h3>
+    <p class="text-xs">(En Linea)</p>
+</div>
+    <button class="text-white focus:outline-none" id="chatbot-toggle">
+      <span class="open-icon hidden cursor-pointer hover:bg-red-600  py-3 px-2 rounded-lg">💬</span>
+      <span class="close-icon p-1 px-2 rounded-lg cursor-pointer hover:bg-red-600">✖</span>
+    </button>
+  </div>
+
+  <!-- Cuerpo del Chat -->
+  <div class="flex-1 flex flex-col overflow-hidden" id="chatbot-body">
+    <div class="flex-1 overflow-y-auto p-4" id="chatbot-messages">
+      <ChatMessage 
+        type="bot" 
+        message="¡Hola! Soy el asistente virtual de Mavepo. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre modelos, especificaciones técnicas, precios o mantenimiento de tractores." 
+      />
+    </div>
+    <ChatInput />
+  </div>
+</div>
+
+<script src="../scripts/chatbot.js"></script>
