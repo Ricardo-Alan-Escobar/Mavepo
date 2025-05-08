@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const patterns = {
         'saludo': /^(hola|buenos días|buenas tardes|buenas noches|saludos|buen dia|buenos dias)/i,
         'despedida': /^(adiós|hasta luego|chao|bye|nos vemos|gracias|adios)/i,
-        'modelos': /(modelos|tipos|clases|catálogo|gama|cosechadoras|implementos|series|tractores|catalogo)/i,
+        'modelos': /(modelos|tipos|clases|catálogo|gama|cosechadoras|implementos|series|tractores|tractor|catalogo)/i,
         'precios': /(precio|cuánto cuesta|valor|cuánto vale|costo|tarifa|cuanto cuesta|cuanto vale)/i,
         'financiacion': /(financiación|financiar|pagar a plazos|leasing|crédito|ayudas|subsidios|credito|financiacion)/i,
         'mantenimiento': /(mantenimiento|servicio|cuidado|revisar|conservar|lubricación|inspección|lubricacion|inspeccion)/i,
