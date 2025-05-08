@@ -141,18 +141,30 @@ const {
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Opciones para el observer
+  // Esperar a que la página se cargue completamente, no solo el DOM
+  window.addEventListener('load', function() {
+    // Reiniciar estado de animaciones por si el usuario recarga la página cuando ya está en esa sección
+    const resetAnimations = () => {
+      document.querySelectorAll('.visible').forEach(el => {
+        el.classList.remove('visible');
+      });
+    };
+    
+    resetAnimations();
+    
+    // Opciones para el observer - ajustadas para activar más abajo en la página
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.2
+      rootMargin: '-100px 0px', // Activa la animación cuando el elemento está 100px dentro de la ventana
+      threshold: 0.4 // Requiere que el 40% del elemento sea visible antes de activar la animación
     };
 
     // Crear el Intersection Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          console.log('Sección about visible, iniciando animaciones');
+          
           // Activar la animación del contenedor de texto
           const contentContainer = entry.target.querySelector('.content-animate');
           if (contentContainer) {
@@ -196,10 +208,13 @@ const {
       });
     }, observerOptions);
 
-    // Observar la sección de about
-    const aboutSection = document.getElementById('about-section');
-    if (aboutSection) {
-      observer.observe(aboutSection);
-    }
+    // Pequeño retraso para asegurar que todas las imágenes y recursos estén cargados
+    setTimeout(() => {
+      // Observar la sección de about
+      const aboutSection = document.getElementById('about-section');
+      if (aboutSection) {
+        observer.observe(aboutSection);
+      }
+    }, 200);
   });
 </script>

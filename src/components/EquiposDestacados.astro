@@ -33,7 +33,7 @@ const featuredProducts = [
 ];
 ---
 
-<section id="featured-products" class="py-16 bg-gray-50">
+<section id="featured-products" class="py-16 bg-gray-50 overflow-hidden">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12 fade-in">
       <h2 class="text-3xl font-bold mb-4">Equipos Destacados</h2>
@@ -45,23 +45,25 @@ const featuredProducts = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {featuredProducts.map((product, index) => (
-        <div class={`card-animate card-delay-${index}`}>
-          <Card>
-            <div class="relative h-64 flex justify-center">
-              <img src={product.image || "/placeholder.svg"} alt={product.title} class="object-cover w-auto h-full" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2 text-animate text-delay-100">
-                {product.title}
-              </h3>
-              <p class="text-gray-600 mb-4 text-animate text-delay-200">
-                {product.description}
-              </p>
-              <a href={product.link} class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate text-delay-300">
-                Ver Detalles
-              </a>
-            </div>
-          </Card>
+        <div class="card-wrapper" data-index={index}>
+          <div class="card-animate">
+            <Card>
+              <div class="relative h-64 flex justify-center">
+                <img src={product.image || "/placeholder.svg"} alt={product.title} class="object-cover w-auto h-full" />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 text-animate">
+                  {product.title}
+                </h3>
+                <p class="text-gray-600 mb-4 text-animate">
+                  {product.description}
+                </p>
+                <a href={product.link} class="inline-flex items-center justify-center w-full rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm text-animate">
+                  Ver Detalles
+                </a>
+              </div>
+            </Card>
+          </div>
         </div>
       ))}
     </div>
@@ -76,11 +78,18 @@ const featuredProducts = [
 </section>
 
 <style>
+  /* Contenedor principal */
+  #featured-products {
+    position: relative;
+    width: 100%;
+  }
+  
   /* Estilos para las animaciones */
   .fade-in {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
   }
   
   .fade-in.visible {
@@ -88,10 +97,16 @@ const featuredProducts = [
     transform: translateY(0);
   }
   
+  /* Estilos para las cards */
+  .card-wrapper {
+    perspective: 1000px;
+  }
+  
   .card-animate {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
   }
   
   .card-animate.visible {
@@ -99,10 +114,13 @@ const featuredProducts = [
     transform: translateY(0);
   }
   
+  /* Animación para los textos dentro de las cards */
   .text-animate {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition-delay: 200ms;
+    will-change: opacity, transform;
   }
   
   .text-animate.visible {
@@ -110,73 +128,92 @@ const featuredProducts = [
     transform: translateY(0);
   }
   
-  /* Retrasos escalonados para las cards */
-  .card-delay-0 {
-    transition-delay: 200ms;
-  }
-  
-  .card-delay-1 {
-    transition-delay: 400ms;
-  }
-  
-  .card-delay-2 {
-    transition-delay: 600ms;
-  }
-  
-  /* Retrasos para los textos dentro de las cards */
-  .text-delay-100 {
-    transition-delay: 100ms;
-  }
-  
-  .text-delay-200 {
-    transition-delay: 200ms;
-  }
-  
-  .text-delay-300 {
-    transition-delay: 300ms;
-  }
-  
   /* Retraso para el botón final */
   .button-delay {
-    transition-delay: 800ms;
+    transition-delay: 300ms;
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Opciones para el observer
-    const observerOptions = {
+  window.addEventListener('load', function() {
+    // Reiniciar estado de animaciones
+    const resetAnimations = () => {
+      document.querySelectorAll('.visible').forEach(el => {
+        el.classList.remove('visible');
+      });
+    };
+    
+    resetAnimations();
+    
+    // Opciones para el observer del título y botón
+    const sectionObserverOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.1
+      rootMargin: '-50px 0px',
+      threshold: 0.3
     };
 
-    // Crear el Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
+    // Observer para el título y botón "Ver Todos los Productos"
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Hacer visibles los elementos principales cuando entran en pantalla
-          entry.target.querySelectorAll('.fade-in, .card-animate').forEach(element => {
+          console.log('Sección de productos visible, iniciando animaciones principales');
+          
+          // Animar título y descripción
+          entry.target.querySelectorAll('.fade-in').forEach(element => {
             element.classList.add('visible');
           });
           
-          // Agregar retraso para los textos dentro de las cards
-          setTimeout(() => {
-            entry.target.querySelectorAll('.text-animate').forEach(element => {
-              element.classList.add('visible');
-            });
-          }, 300);
-          
-          // Dejar de observar una vez que ya se animó
-          observer.unobserve(entry.target);
+          // Dejar de observar
+          sectionObserver.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, sectionObserverOptions);
 
-    // Observar la sección de productos destacados
-    const featuredSection = document.getElementById('featured-products');
-    if (featuredSection) {
-      observer.observe(featuredSection);
-    }
+    // Opciones para el observer de cada card individual
+    const cardObserverOptions = {
+      root: null,
+      rootMargin: '-30px 0px', 
+      threshold: 0.2 // Activar cuando al menos el 20% de la card sea visible
+    };
+
+    // Observer para las cards individuales
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.dataset.index);
+          console.log(`Card ${index} visible, iniciando animación`);
+          
+          // Animar la card
+          const cardElement = entry.target.querySelector('.card-animate');
+          if (cardElement) {
+            cardElement.classList.add('visible');
+            
+            // Animar los textos internos con un pequeño retraso
+            setTimeout(() => {
+              entry.target.querySelectorAll('.text-animate').forEach(textEl => {
+                textEl.classList.add('visible');
+              });
+            }, 200);
+          }
+          
+          // Dejar de observar esta card
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, cardObserverOptions);
+
+    // Pequeño retraso para asegurar que todo esté cargado
+    setTimeout(() => {
+      // Observar la sección principal
+      const featuredSection = document.getElementById('featured-products');
+      if (featuredSection) {
+        sectionObserver.observe(featuredSection);
+        
+        // Observar cada card individualmente
+        featuredSection.querySelectorAll('.card-wrapper').forEach(card => {
+          cardObserver.observe(card);
+        });
+      }
+    }, 200);
   });
 </script>
