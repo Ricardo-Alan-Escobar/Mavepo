@@ -14,7 +14,7 @@ const {
 } = Astro.props;
 ---
 
-<section id="about-section" class="py-16 bg-gray-50">
+<section id="about-section" class="py-16 bg-gray-50 overflow-hidden">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div class="content-animate">
@@ -46,11 +46,18 @@ const {
 </section>
 
 <style>
+  /* Sección contenedora principal - Previene el desbordamiento */
+  #about-section {
+    position: relative;
+    width: 100%;
+  }
+  
   /* Animación para el contenedor de texto */
   .content-animate {
     opacity: 0;
     transform: translateX(-30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
   }
   
   .content-animate.visible {
@@ -63,6 +70,7 @@ const {
     opacity: 0;
     transform: translateY(-15px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
   }
   
   .title-animate.visible {
@@ -75,6 +83,7 @@ const {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
   }
   
   .text-animate.visible {
@@ -88,6 +97,7 @@ const {
     transform: translateY(10px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     transition-delay: 300ms;
+    will-change: opacity, transform;
   }
   
   .button-animate.visible {
@@ -101,6 +111,7 @@ const {
     transform: translateX(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     transition-delay: 200ms;
+    will-change: opacity, transform;
   }
   
   .image-container-animate.visible {
@@ -112,6 +123,7 @@ const {
   .image-animate {
     transform: scale(1.1);
     transition: transform 1.5s ease-out;
+    will-change: transform;
   }
   
   .image-animate.visible {
